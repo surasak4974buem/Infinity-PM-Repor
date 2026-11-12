@@ -694,10 +694,10 @@
     .btn-sticker { background: #7c3aed; color: #fff; }
     .btn-sticker:hover { background: #6d28d9; }
 
-    /* ================= PM Machine Sticker Design ================= */
+    /* ================= PM Machine Sticker Design (Compact & 3-Point Reporting) ================= */
     .sticker-card {
-      width: 92mm;
-      height: 58mm;
+      width: 84mm;
+      height: 52mm;
       border: 1.5px dashed #64748b;
       border-radius: 6px;
       background: #ffffff;
@@ -711,13 +711,13 @@
     }
     .sticker-card.size-thermal {
       width: 80mm;
-      height: 50mm;
+      height: 48mm;
     }
     .stk-hdr {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 8px;
+      padding: 3px 6px;
       color: #fff;
       background: #16a34a;
     }
@@ -726,70 +726,88 @@
     .stk-brand {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
     .stk-brand img {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #fff;
       padding: 1px;
     }
     .stk-brand-txt { line-height: 1.1; }
-    .stk-brand-txt .t1 { font-size: 11px; font-weight: 700; }
-    .stk-brand-txt .t2 { font-size: 9px; opacity: 0.95; }
+    .stk-brand-txt .t1 { font-size: 10.5px; font-weight: 700; }
+    .stk-brand-txt .t2 { font-size: 8.5px; opacity: 0.95; }
     .stk-badge {
       background: #fff;
       color: #166534;
-      padding: 2px 7px;
-      border-radius: 12px;
-      font-size: 10.5px;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 10px;
       font-weight: 700;
       white-space: nowrap;
     }
     .stk-hdr.warn .stk-badge { color: #92400e; }
     .stk-hdr.fail .stk-badge { color: #991b1b; }
     .stk-body {
-      padding: 4px 8px;
+      padding: 3px 6px;
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-between;
     }
     .stk-meta {
-      font-size: 9.5px;
+      font-size: 9px;
       color: #334155;
       border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 2px;
+      padding-bottom: 1px;
       display: flex;
       justify-content: space-between;
-      gap: 4px;
+      gap: 3px;
       white-space: nowrap;
       overflow: hidden;
     }
-    .stk-metrics {
+    .stk-points-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin: 2px 0;
     }
-    .stk-box {
+    .stk-pt-box {
       border: 1px solid #cbd5e1;
       border-radius: 4px;
-      padding: 2px 5px;
+      padding: 2px 2px;
       text-align: center;
       background: #f8fafc;
     }
-    .stk-box .lbl { font-size: 8.5px; color: #475569; font-weight: 600; }
-    .stk-box .val { font-size: 13.5px; font-weight: 700; color: #0c3b5e; line-height: 1.15; }
+    .stk-pt-box .pt-lbl {
+      font-size: 8px;
+      color: #475569;
+      font-weight: 700;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1px;
+      margin-bottom: 1px;
+      white-space: nowrap;
+    }
+    .stk-pt-box .pt-o2 {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0c3b5e;
+      line-height: 1.1;
+    }
+    .stk-pt-box .pt-flow {
+      font-size: 7.5px;
+      color: #64748b;
+    }
     .stk-dates {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 5px;
+      gap: 4px;
     }
     .stk-date-box {
-      border-radius: 4px;
-      padding: 2px 6px;
-      font-size: 9.5px;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 8.5px;
       background: #eff6ff;
       border: 1px solid #bfdbfe;
       display: flex;
@@ -803,23 +821,23 @@
       font-weight: 700;
     }
     .stk-ftr {
-      padding: 2px 8px 4px 8px;
+      padding: 2px 6px 3px 6px;
       border-top: 1px dotted #94a3b8;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 9px;
+      font-size: 8.5px;
       color: #334155;
       background: #fff;
     }
     .stk-sig-wrap {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
     .stk-sig-img {
-      height: 18px;
-      max-width: 75px;
+      height: 16px;
+      max-width: 65px;
       object-fit: contain;
     }
     #stickerPrintArea { display: none; }
@@ -1194,8 +1212,8 @@
         <div style="display:flex; gap:8px; justify-content:center; margin-bottom:10px; flex-wrap:wrap;">
           <label style="font-size:12px; font-weight:600;">ขนาด:</label>
           <select id="stkSizeSel" onchange="renderStickerPreview()" style="padding:2px 6px; border-radius:4px; border:1px solid #cbd5e1; font-family:'Sarabun',sans-serif;">
-            <option value="std">มาตรฐาน A4 (9.2 × 5.8 ซม.)</option>
-            <option value="thermal">เครื่องพิมพ์ความร้อน (80 × 50 มม.)</option>
+            <option value="std">มาตรฐานกะทัดรัด (8.4 × 5.2 ซม.)</option>
+            <option value="thermal">เครื่องพิมพ์ความร้อน (80 × 48 มม.)</option>
           </select>
           <label style="font-size:12px; font-weight:600; margin-left:6px;">จำนวนพิมพ์:</label>
           <select id="stkQtySel" onchange="renderStickerPreview()" style="padding:2px 6px; border-radius:4px; border:1px solid #cbd5e1; font-family:'Sarabun',sans-serif;">
@@ -2097,13 +2115,24 @@
       window.print();
     }
 
-    // ================= MACHINE STICKER GENERATOR & PNG EXPORT =================
+    // ================= MACHINE STICKER GENERATOR & PNG EXPORT (COMPACT 3-POINT) =================
     function getStickerData() {
       const verdictEl = document.querySelector('input[name="verdict"]:checked');
       const verdict = verdictEl ? verdictEl.value : 'PASS';
-      const maxF = currentCapacity;
-      const o2Val = parseFloat(document.getElementById(`o2In_${maxF}`)?.value);
-      const flVal = parseFloat(document.getElementById(`flowIn_${maxF}`)?.value);
+
+      // ดึงผลการตรวจวัดครบทั้ง 3 จุดตาม activeFlows (เช่น 1L, 3L, 5L)
+      const points = [];
+      activeFlows.forEach(pt => {
+        const f = pt.f;
+        const fl = parseFloat(document.getElementById(`flowIn_${f}`)?.value);
+        const o2 = parseFloat(document.getElementById(`o2In_${f}`)?.value);
+        points.push({
+          f: f,
+          tag: pt.tag || '',
+          flowText: !isNaN(fl) ? fl.toFixed(1) : `${f}.0`,
+          o2Text: !isNaN(o2) ? `${o2.toFixed(1)}%` : '-'
+        });
+      });
 
       const sDateVal = document.getElementById('serviceDate').value;
       let pmDateStr = '-';
@@ -2117,8 +2146,7 @@
         model: document.getElementById('devModel').value || '-',
         sn: document.getElementById('devSn').value || '-',
         docNo: document.getElementById('docNo').value || '-',
-        o2Text: !isNaN(o2Val) ? `${o2Val.toFixed(1)} %` : '-',
-        flowText: !isNaN(flVal) ? `${flVal.toFixed(1)} L/min` : `${maxF}.0 L/min`,
+        points,
         pmDate: pmDateStr,
         nextPmDate: nextPmStr,
         techName: document.getElementById('techName').value || 'ผู้ตรวจเช็ค',
@@ -2128,8 +2156,17 @@
 
     function buildStickerHtml(d, sizeClass) {
       const hdrCls = d.verdict === 'WARN' ? 'warn' : (d.verdict === 'FAIL' ? 'fail' : '');
-      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ พร้อมใช้งาน');
+      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ ผ่านเกณฑ์');
       const sigHtml = d.sigSrc ? `<img class="stk-sig-img" src="${d.sigSrc}" alt="sig">` : `<span style="color:#94a3b8;">(...................)</span>`;
+
+      const ptsHtml = d.points.map(pt => `
+        <div class="stk-pt-box">
+          <div class="pt-lbl">Flow ${pt.flowText} L</div>
+          <div class="pt-o2">${pt.o2Text}</div>
+          <div class="pt-flow">O₂ Purity</div>
+        </div>
+      `).join('');
+
       return `
         <div class="sticker-card ${sizeClass}">
           <div class="stk-hdr ${hdrCls}">
@@ -2148,15 +2185,8 @@
               <span><strong>S/N:</strong> ${d.sn}</span>
               <span><strong>ใบงาน:</strong> ${d.docNo}</span>
             </div>
-            <div class="stk-metrics">
-              <div class="stk-box">
-                <div class="lbl">ความเข้มข้นออกซิเจน (O₂)</div>
-                <div class="val">${d.o2Text}</div>
-              </div>
-              <div class="stk-box">
-                <div class="lbl">อัตราการไหล (Flow)</div>
-                <div class="val">${d.flowText}</div>
-              </div>
+            <div class="stk-points-grid" style="grid-template-columns: repeat(${d.points.length}, 1fr);">
+              ${ptsHtml}
             </div>
             <div class="stk-dates">
               <div class="stk-date-box"><span>ตรวจเช็ค:</span><strong>${d.pmDate}</strong></div>
@@ -2165,7 +2195,7 @@
           </div>
           <div class="stk-ftr">
             <div class="stk-sig-wrap">
-              <strong>ลงชื่อ:</strong> ${sigHtml} <span>(${d.techName})</span>
+              <strong>ช่าง:</strong> ${sigHtml} <span>(${d.techName})</span>
             </div>
             <div><strong>วันที่:</strong> ${d.pmDate}</div>
           </div>
@@ -2202,7 +2232,7 @@
 
     function downloadStickerPng() {
       const d = getStickerData();
-      const W = 920, H = 580;
+      const W = 840, H = 520;
       const c = document.createElement('canvas');
       c.width = W; c.height = H;
       const ctx = c.getContext('2d');
@@ -2211,94 +2241,119 @@
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, W, H);
       ctx.strokeStyle = '#64748b';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.strokeRect(2, 2, W - 4, H - 4);
 
       // Header bar
       const hdrColor = d.verdict === 'WARN' ? '#d97706' : (d.verdict === 'FAIL' ? '#dc2626' : '#16a34a');
-      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ พร้อมใช้งาน');
+      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ ผ่านเกณฑ์');
       ctx.fillStyle = hdrColor;
-      ctx.fillRect(4, 4, W - 8, 108);
+      ctx.fillRect(3, 3, W - 6, 96);
 
       const finishDraw = (logoImg, sigImg) => {
         if (logoImg) {
           ctx.save();
           ctx.beginPath();
-          ctx.arc(58, 58, 40, 0, Math.PI * 2);
+          ctx.arc(52, 51, 35, 0, Math.PI * 2);
           ctx.fillStyle = '#ffffff';
           ctx.fill();
           ctx.clip();
-          ctx.drawImage(logoImg, 20, 20, 76, 76);
+          ctx.drawImage(logoImg, 17, 16, 70, 70);
           ctx.restore();
         }
         ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 30px Sarabun, sans-serif';
-        ctx.fillText('INFINITY SERVICE', 114, 52);
-        ctx.font = '22px Sarabun, sans-serif';
-        ctx.fillText('ตรวจเช็คเครื่องผลิตออกซิเจน • โทร. 081-993-7703', 114, 86);
+        ctx.font = 'bold 27px Sarabun, sans-serif';
+        ctx.fillText('INFINITY SERVICE', 104, 46);
+        ctx.font = '20px Sarabun, sans-serif';
+        ctx.fillText('ตรวจเช็คเครื่องผลิตออกซิเจน • โทร. 081-993-7703', 104, 78);
 
         // Status pill
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
-        ctx.roundRect(W - 235, 28, 210, 56, 28);
+        ctx.roundRect(W - 205, 24, 185, 48, 24);
         ctx.fill();
         ctx.fillStyle = hdrColor;
-        ctx.font = 'bold 26px Sarabun, sans-serif';
+        ctx.font = 'bold 23px Sarabun, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(badgeTxt, W - 130, 66);
+        ctx.fillText(badgeTxt, W - 112, 57);
 
         // Meta row
         ctx.textAlign = 'left';
         ctx.fillStyle = '#334155';
-        ctx.font = 'bold 22px Sarabun, sans-serif';
-        ctx.fillText(`รุ่น: ${d.model}   |   S/N: ${d.sn}   |   ใบงาน: ${d.docNo}`, 26, 152);
+        ctx.font = 'bold 19.5px Sarabun, sans-serif';
+        ctx.fillText(`รุ่น: ${d.model}   |   S/N: ${d.sn}   |   ใบงาน: ${d.docNo}`, 22, 126);
         ctx.strokeStyle = '#e2e8f0';
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.moveTo(24, 168); ctx.lineTo(W - 24, 168); ctx.stroke();
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(20, 138); ctx.lineTo(W - 20, 138); ctx.stroke();
 
-        // Metrics boxes
-        const drawBox = (x, y, w, h, bg, bd, lbl, val, lblCol, valCol) => {
-          ctx.fillStyle = bg; ctx.strokeStyle = bd; ctx.lineWidth = 2;
-          ctx.beginPath(); ctx.roundRect(x, y, w, h, 10); ctx.fill(); ctx.stroke();
-          ctx.fillStyle = lblCol; ctx.font = 'bold 21px Sarabun, sans-serif'; ctx.textAlign = 'center';
-          ctx.fillText(lbl, x + w / 2, y + 36);
-          ctx.fillStyle = valCol; ctx.font = 'bold 42px Sarabun, sans-serif';
-          ctx.fillText(val, x + w / 2, y + 90);
-        };
-        drawBox(24, 185, 424, 118, '#f8fafc', '#cbd5e1', 'ความเข้มข้นออกซิเจน (O₂)', d.o2Text, '#475569', '#0c3b5e');
-        drawBox(472, 185, 424, 118, '#f8fafc', '#cbd5e1', 'อัตราการไหล (Flow)', d.flowText, '#475569', '#0c3b5e');
+        // 3-Point Metrics Boxes
+        const n = Math.max(d.points.length, 1);
+        const padX = 20, gap = 8;
+        const boxW = (W - (padX * 2) - ((n - 1) * gap)) / n;
+        const boxH = 112, boxY = 150;
+
+        d.points.forEach((pt, i) => {
+          const bx = padX + i * (boxW + gap);
+          ctx.fillStyle = '#f8fafc';
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.roundRect(bx, boxY, boxW, boxH, 8);
+          ctx.fill();
+          ctx.stroke();
+
+          // Header in box
+          ctx.fillStyle = '#e2e8f0';
+          ctx.fillRect(bx + 1, boxY + 1, boxW - 2, 32);
+          ctx.fillStyle = '#475569';
+          ctx.font = 'bold 18px Sarabun, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`Flow ${pt.flowText} L/min`, bx + boxW / 2, boxY + 23);
+
+          // Big O2 Reading
+          ctx.fillStyle = '#0c3b5e';
+          ctx.font = 'bold 36px Sarabun, sans-serif';
+          ctx.fillText(pt.o2Text, bx + boxW / 2, boxY + 74);
+
+          // Subtext
+          ctx.fillStyle = '#64748b';
+          ctx.font = '16px Sarabun, sans-serif';
+          ctx.fillText('ความเข้มข้นออกซิเจน', bx + boxW / 2, boxY + 101);
+        });
 
         // Dates row
+        const dateY = 276, dateH = 54;
+        const halfW = (W - (padX * 2) - gap) / 2;
         const drawDate = (x, y, w, h, bg, bd, lbl, val, col) => {
-          ctx.fillStyle = bg; ctx.strokeStyle = bd; ctx.lineWidth = 2;
-          ctx.beginPath(); ctx.roundRect(x, y, w, h, 8); ctx.fill(); ctx.stroke();
-          ctx.fillStyle = col; ctx.font = '23px Sarabun, sans-serif'; ctx.textAlign = 'left';
-          ctx.fillText(lbl, x + 16, y + 40);
-          ctx.font = 'bold 26px Sarabun, sans-serif'; ctx.textAlign = 'right';
-          ctx.fillText(val, x + w - 16, y + 40);
+          ctx.fillStyle = bg; ctx.strokeStyle = bd; ctx.lineWidth = 1.5;
+          ctx.beginPath(); ctx.roundRect(x, y, w, h, 6); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = col; ctx.font = '20px Sarabun, sans-serif'; ctx.textAlign = 'left';
+          ctx.fillText(lbl, x + 14, y + 35);
+          ctx.font = 'bold 22px Sarabun, sans-serif'; ctx.textAlign = 'right';
+          ctx.fillText(val, x + w - 14, y + 35);
         };
-        drawDate(24, 322, 424, 62, '#eff6ff', '#bfdbfe', 'วันที่ตรวจเช็ค:', d.pmDate, '#0c3b5e');
-        drawDate(472, 322, 424, 62, '#fef3c7', '#f59e0b', 'ตรวจครั้งถัดไป:', d.nextPmDate, '#92400e');
+        drawDate(padX, dateY, halfW, dateH, '#eff6ff', '#bfdbfe', 'วันที่ตรวจเช็ค:', d.pmDate, '#0c3b5e');
+        drawDate(padX + halfW + gap, dateY, halfW, dateH, '#fef3c7', '#f59e0b', 'ตรวจครั้งถัดไป:', d.nextPmDate, '#92400e');
 
         // Footer + signature
-        ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([6, 4]);
-        ctx.beginPath(); ctx.moveTo(24, 412); ctx.lineTo(W - 24, 412); ctx.stroke();
+        ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([5, 4]);
+        ctx.beginPath(); ctx.moveTo(20, 348); ctx.lineTo(W - 20, 348); ctx.stroke();
         ctx.setLineDash([]);
 
-        ctx.fillStyle = '#334155'; ctx.font = 'bold 22px Sarabun, sans-serif'; ctx.textAlign = 'left';
-        ctx.fillText('ผู้ตรวจเช็ค:', 26, 470);
+        ctx.fillStyle = '#334155'; ctx.font = 'bold 20px Sarabun, sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText('ผู้ตรวจเช็ค:', 22, 404);
         if (sigImg) {
-          const ratio = Math.min(220 / sigImg.width, 75 / sigImg.height);
+          const ratio = Math.min(190 / sigImg.width, 68 / sigImg.height);
           const sw = sigImg.width * ratio, sh = sigImg.height * ratio;
-          ctx.drawImage(sigImg, 155, 424 + (75 - sh) / 2, sw, sh);
+          ctx.drawImage(sigImg, 130, 362 + (68 - sh) / 2, sw, sh);
         }
-        ctx.font = '21px Sarabun, sans-serif';
-        ctx.fillText(`(${d.techName})`, 155, 535);
+        ctx.font = '19px Sarabun, sans-serif';
+        ctx.fillText(`(${d.techName})`, 130, 475);
         ctx.textAlign = 'right';
-        ctx.font = 'bold 22px Sarabun, sans-serif';
-        ctx.fillText(`วันที่: ${d.pmDate}`, W - 26, 470);
-        ctx.font = '18px Sarabun, sans-serif'; ctx.fillStyle = '#64748b';
-        ctx.fillText('เอกสารคู่กับใบรายงานผลเลขที่: ' + d.docNo, W - 26, 535);
+        ctx.font = 'bold 20px Sarabun, sans-serif';
+        ctx.fillText(`วันที่: ${d.pmDate}`, W - 22, 404);
+        ctx.font = '16.5px Sarabun, sans-serif'; ctx.fillStyle = '#64748b';
+        ctx.fillText('คู่กับใบรายงานผลเลขที่: ' + d.docNo, W - 22, 475);
 
         const a = document.createElement('a');
         a.download = `Sticker_${sanitizeFilenamePart(d.sn, 'OXC')}_${sanitizeFilenamePart(d.pmDate, 'PM')}.png`;
