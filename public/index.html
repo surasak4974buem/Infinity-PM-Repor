@@ -691,11 +691,155 @@
     .btn-gh:hover { background: #3b434b; }
     .btn-blue { background: var(--brand-blue); color: #fff; }
     .btn-blue:hover { background: #027db5; }
+    .btn-sticker { background: #7c3aed; color: #fff; }
+    .btn-sticker:hover { background: #6d28d9; }
+
+    /* ================= PM Machine Sticker Design ================= */
+    .sticker-card {
+      width: 92mm;
+      height: 58mm;
+      border: 1.5px dashed #64748b;
+      border-radius: 6px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Sarabun', sans-serif;
+      color: #0f172a;
+      margin: 0 auto;
+    }
+    .sticker-card.size-thermal {
+      width: 80mm;
+      height: 50mm;
+    }
+    .stk-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 8px;
+      color: #fff;
+      background: #16a34a;
+    }
+    .stk-hdr.warn { background: #d97706; }
+    .stk-hdr.fail { background: #dc2626; }
+    .stk-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stk-brand img {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #fff;
+      padding: 1px;
+    }
+    .stk-brand-txt { line-height: 1.1; }
+    .stk-brand-txt .t1 { font-size: 11px; font-weight: 700; }
+    .stk-brand-txt .t2 { font-size: 9px; opacity: 0.95; }
+    .stk-badge {
+      background: #fff;
+      color: #166534;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .stk-hdr.warn .stk-badge { color: #92400e; }
+    .stk-hdr.fail .stk-badge { color: #991b1b; }
+    .stk-body {
+      padding: 4px 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    .stk-meta {
+      font-size: 9.5px;
+      color: #334155;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .stk-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    .stk-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 2px 5px;
+      text-align: center;
+      background: #f8fafc;
+    }
+    .stk-box .lbl { font-size: 8.5px; color: #475569; font-weight: 600; }
+    .stk-box .val { font-size: 13.5px; font-weight: 700; color: #0c3b5e; line-height: 1.15; }
+    .stk-dates {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    .stk-date-box {
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 9.5px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stk-date-box.next {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+      font-weight: 700;
+    }
+    .stk-ftr {
+      padding: 2px 8px 4px 8px;
+      border-top: 1px dotted #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9px;
+      color: #334155;
+      background: #fff;
+    }
+    .stk-sig-wrap {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .stk-sig-img {
+      height: 18px;
+      max-width: 75px;
+      object-fit: contain;
+    }
+    #stickerPrintArea { display: none; }
 
     /* ================= Print / Export PDF Styling ================= */
     @media print {
       body { background: #fff; margin: 0; padding: 0; }
       .app-bar, .quick-strip, .sig-actions, .sig-placeholder, .modal-backdrop { display: none !important; }
+      body.printing-sticker .report-wrapper { display: none !important; }
+      body.printing-sticker #stickerPrintArea {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 6mm;
+        padding: 5mm;
+        justify-content: flex-start;
+      }
+      .sticker-card, .stk-hdr, .stk-badge, .stk-box, .stk-date-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
       .report-wrapper { margin: 0; max-width: none; }
       .page {
         box-shadow: none;
@@ -739,7 +883,8 @@
       <button class="btn btn-light" onclick="markAllPM('pass')">✅ ติ๊กผ่าน PM</button>
       <button class="btn btn-warn" onclick="saveDraft()">💾 ร่าง</button>
       <button class="btn btn-danger" onclick="clearDraft()">🔄 ล้าง</button>
-      <button class="btn btn-pdf" onclick="window.print()">📄 Export PDF</button>
+      <button class="btn btn-sticker" onclick="openStickerModal()">🏷️ สติกเกอร์ติดเครื่อง</button>
+      <button class="btn btn-pdf" onclick="printFullReport()">📄 Export PDF</button>
     </div>
   </div>
 
@@ -1037,6 +1182,43 @@
       </div>
     </div>
   </div>
+
+  <!-- 4. Sticker Preview & Print Modal -->
+  <div class="modal-backdrop" id="stickerModal">
+    <div class="modal-box" style="max-width:520px;">
+      <div class="modal-hdr" style="background:#5b21b6;">
+        <span>🏷️ สติกเกอร์ติดเครื่องหลังตรวจเช็ค (ซิงค์ข้อมูลตรงกับใบรายงาน)</span>
+        <button class="modal-close" onclick="closeModal('stickerModal')">&times;</button>
+      </div>
+      <div class="modal-body" style="background:#f1f5f9;">
+        <div style="display:flex; gap:8px; justify-content:center; margin-bottom:10px; flex-wrap:wrap;">
+          <label style="font-size:12px; font-weight:600;">ขนาด:</label>
+          <select id="stkSizeSel" onchange="renderStickerPreview()" style="padding:2px 6px; border-radius:4px; border:1px solid #cbd5e1; font-family:'Sarabun',sans-serif;">
+            <option value="std">มาตรฐาน A4 (9.2 × 5.8 ซม.)</option>
+            <option value="thermal">เครื่องพิมพ์ความร้อน (80 × 50 มม.)</option>
+          </select>
+          <label style="font-size:12px; font-weight:600; margin-left:6px;">จำนวนพิมพ์:</label>
+          <select id="stkQtySel" onchange="renderStickerPreview()" style="padding:2px 6px; border-radius:4px; border:1px solid #cbd5e1; font-family:'Sarabun',sans-serif;">
+            <option value="1">1 ดวง</option>
+            <option value="2">2 ดวง</option>
+            <option value="4">4 ดวง</option>
+          </select>
+        </div>
+        <div id="stickerPreviewBox" style="padding:8px 0;"></div>
+        <div style="font-size:11px; color:#475569; text-align:center; margin-top:6px;">
+          * ข้อมูลผลทดสอบ, วันที่ตรวจเช็ค, วันตรวจครั้งถัดไป และลายเซ็น ดึงจากใบรายงานผลโดยอัตโนมัติ
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn btn-light" style="color:#334155; border-color:#cbd5e1;" onclick="closeModal('stickerModal')">ปิด</button>
+        <button class="btn btn-blue" onclick="downloadStickerPng()">💾 บันทึกเป็นรูป (.PNG)</button>
+        <button class="btn btn-sticker" onclick="printStickers()">🖨️ พิมพ์สติกเกอร์</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- พื้นที่พิมพ์เฉพาะสติกเกอร์ -->
+  <div id="stickerPrintArea"></div>
 
   <script>
     const PM_ITEMS = [
@@ -1908,6 +2090,234 @@
         btn.disabled = false;
         btn.textContent = oldTxt;
       }
+    }
+
+    function printFullReport() {
+      document.body.classList.remove('printing-sticker');
+      window.print();
+    }
+
+    // ================= MACHINE STICKER GENERATOR & PNG EXPORT =================
+    function getStickerData() {
+      const verdictEl = document.querySelector('input[name="verdict"]:checked');
+      const verdict = verdictEl ? verdictEl.value : 'PASS';
+      const maxF = currentCapacity;
+      const o2Val = parseFloat(document.getElementById(`o2In_${maxF}`)?.value);
+      const flVal = parseFloat(document.getElementById(`flowIn_${maxF}`)?.value);
+
+      const sDateVal = document.getElementById('serviceDate').value;
+      let pmDateStr = '-';
+      if (sDateVal) {
+        pmDateStr = new Date(sDateVal).toLocaleDateString('th-TH', { year: 'numeric', month: '2-digit', day: '2-digit' });
+      }
+      const nextPmStr = document.getElementById('nextPmDate').value || '-';
+
+      return {
+        verdict,
+        model: document.getElementById('devModel').value || '-',
+        sn: document.getElementById('devSn').value || '-',
+        docNo: document.getElementById('docNo').value || '-',
+        o2Text: !isNaN(o2Val) ? `${o2Val.toFixed(1)} %` : '-',
+        flowText: !isNaN(flVal) ? `${flVal.toFixed(1)} L/min` : `${maxF}.0 L/min`,
+        pmDate: pmDateStr,
+        nextPmDate: nextPmStr,
+        techName: document.getElementById('techName').value || 'ผู้ตรวจเช็ค',
+        sigSrc: sigState.sigTech.src || ''
+      };
+    }
+
+    function buildStickerHtml(d, sizeClass) {
+      const hdrCls = d.verdict === 'WARN' ? 'warn' : (d.verdict === 'FAIL' ? 'fail' : '');
+      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ พร้อมใช้งาน');
+      const sigHtml = d.sigSrc ? `<img class="stk-sig-img" src="${d.sigSrc}" alt="sig">` : `<span style="color:#94a3b8;">(...................)</span>`;
+      return `
+        <div class="sticker-card ${sizeClass}">
+          <div class="stk-hdr ${hdrCls}">
+            <div class="stk-brand">
+              <img src="${LOGO_DATA_URI}" alt="Logo">
+              <div class="stk-brand-txt">
+                <div class="t1">INFINITY SERVICE</div>
+                <div class="t2">ตรวจเช็คเครื่องผลิตออกซิเจน • 081-993-7703</div>
+              </div>
+            </div>
+            <div class="stk-badge">${badgeTxt}</div>
+          </div>
+          <div class="stk-body">
+            <div class="stk-meta">
+              <span><strong>รุ่น:</strong> ${d.model}</span>
+              <span><strong>S/N:</strong> ${d.sn}</span>
+              <span><strong>ใบงาน:</strong> ${d.docNo}</span>
+            </div>
+            <div class="stk-metrics">
+              <div class="stk-box">
+                <div class="lbl">ความเข้มข้นออกซิเจน (O₂)</div>
+                <div class="val">${d.o2Text}</div>
+              </div>
+              <div class="stk-box">
+                <div class="lbl">อัตราการไหล (Flow)</div>
+                <div class="val">${d.flowText}</div>
+              </div>
+            </div>
+            <div class="stk-dates">
+              <div class="stk-date-box"><span>ตรวจเช็ค:</span><strong>${d.pmDate}</strong></div>
+              <div class="stk-date-box next"><span>ตรวจครั้งถัดไป:</span><strong>${d.nextPmDate}</strong></div>
+            </div>
+          </div>
+          <div class="stk-ftr">
+            <div class="stk-sig-wrap">
+              <strong>ลงชื่อ:</strong> ${sigHtml} <span>(${d.techName})</span>
+            </div>
+            <div><strong>วันที่:</strong> ${d.pmDate}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openStickerModal() {
+      renderStickerPreview();
+      document.getElementById('stickerModal').classList.add('open');
+    }
+
+    function renderStickerPreview() {
+      const d = getStickerData();
+      const sizeSel = document.getElementById('stkSizeSel').value;
+      const sizeClass = sizeSel === 'thermal' ? 'size-thermal' : '';
+      document.getElementById('stickerPreviewBox').innerHTML = buildStickerHtml(d, sizeClass);
+    }
+
+    function printStickers() {
+      const d = getStickerData();
+      const sizeSel = document.getElementById('stkSizeSel').value;
+      const qty = parseInt(document.getElementById('stkQtySel').value) || 1;
+      const sizeClass = sizeSel === 'thermal' ? 'size-thermal' : '';
+      const area = document.getElementById('stickerPrintArea');
+      area.innerHTML = Array(qty).fill(buildStickerHtml(d, sizeClass)).join('');
+      document.body.classList.add('printing-sticker');
+      window.print();
+    }
+
+    window.addEventListener('afterprint', () => {
+      document.body.classList.remove('printing-sticker');
+    });
+
+    function downloadStickerPng() {
+      const d = getStickerData();
+      const W = 920, H = 580;
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      const ctx = c.getContext('2d');
+
+      // White card background + border
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(2, 2, W - 4, H - 4);
+
+      // Header bar
+      const hdrColor = d.verdict === 'WARN' ? '#d97706' : (d.verdict === 'FAIL' ? '#dc2626' : '#16a34a');
+      const badgeTxt = d.verdict === 'WARN' ? '⚠ เฝ้าระวัง' : (d.verdict === 'FAIL' ? '✘ งดใช้งาน' : '✔ พร้อมใช้งาน');
+      ctx.fillStyle = hdrColor;
+      ctx.fillRect(4, 4, W - 8, 108);
+
+      const finishDraw = (logoImg, sigImg) => {
+        if (logoImg) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(58, 58, 40, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.clip();
+          ctx.drawImage(logoImg, 20, 20, 76, 76);
+          ctx.restore();
+        }
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 30px Sarabun, sans-serif';
+        ctx.fillText('INFINITY SERVICE', 114, 52);
+        ctx.font = '22px Sarabun, sans-serif';
+        ctx.fillText('ตรวจเช็คเครื่องผลิตออกซิเจน • โทร. 081-993-7703', 114, 86);
+
+        // Status pill
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.roundRect(W - 235, 28, 210, 56, 28);
+        ctx.fill();
+        ctx.fillStyle = hdrColor;
+        ctx.font = 'bold 26px Sarabun, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(badgeTxt, W - 130, 66);
+
+        // Meta row
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#334155';
+        ctx.font = 'bold 22px Sarabun, sans-serif';
+        ctx.fillText(`รุ่น: ${d.model}   |   S/N: ${d.sn}   |   ใบงาน: ${d.docNo}`, 26, 152);
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(24, 168); ctx.lineTo(W - 24, 168); ctx.stroke();
+
+        // Metrics boxes
+        const drawBox = (x, y, w, h, bg, bd, lbl, val, lblCol, valCol) => {
+          ctx.fillStyle = bg; ctx.strokeStyle = bd; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.roundRect(x, y, w, h, 10); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = lblCol; ctx.font = 'bold 21px Sarabun, sans-serif'; ctx.textAlign = 'center';
+          ctx.fillText(lbl, x + w / 2, y + 36);
+          ctx.fillStyle = valCol; ctx.font = 'bold 42px Sarabun, sans-serif';
+          ctx.fillText(val, x + w / 2, y + 90);
+        };
+        drawBox(24, 185, 424, 118, '#f8fafc', '#cbd5e1', 'ความเข้มข้นออกซิเจน (O₂)', d.o2Text, '#475569', '#0c3b5e');
+        drawBox(472, 185, 424, 118, '#f8fafc', '#cbd5e1', 'อัตราการไหล (Flow)', d.flowText, '#475569', '#0c3b5e');
+
+        // Dates row
+        const drawDate = (x, y, w, h, bg, bd, lbl, val, col) => {
+          ctx.fillStyle = bg; ctx.strokeStyle = bd; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.roundRect(x, y, w, h, 8); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = col; ctx.font = '23px Sarabun, sans-serif'; ctx.textAlign = 'left';
+          ctx.fillText(lbl, x + 16, y + 40);
+          ctx.font = 'bold 26px Sarabun, sans-serif'; ctx.textAlign = 'right';
+          ctx.fillText(val, x + w - 16, y + 40);
+        };
+        drawDate(24, 322, 424, 62, '#eff6ff', '#bfdbfe', 'วันที่ตรวจเช็ค:', d.pmDate, '#0c3b5e');
+        drawDate(472, 322, 424, 62, '#fef3c7', '#f59e0b', 'ตรวจครั้งถัดไป:', d.nextPmDate, '#92400e');
+
+        // Footer + signature
+        ctx.strokeStyle = '#94a3b8'; ctx.setLineDash([6, 4]);
+        ctx.beginPath(); ctx.moveTo(24, 412); ctx.lineTo(W - 24, 412); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = '#334155'; ctx.font = 'bold 22px Sarabun, sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText('ผู้ตรวจเช็ค:', 26, 470);
+        if (sigImg) {
+          const ratio = Math.min(220 / sigImg.width, 75 / sigImg.height);
+          const sw = sigImg.width * ratio, sh = sigImg.height * ratio;
+          ctx.drawImage(sigImg, 155, 424 + (75 - sh) / 2, sw, sh);
+        }
+        ctx.font = '21px Sarabun, sans-serif';
+        ctx.fillText(`(${d.techName})`, 155, 535);
+        ctx.textAlign = 'right';
+        ctx.font = 'bold 22px Sarabun, sans-serif';
+        ctx.fillText(`วันที่: ${d.pmDate}`, W - 26, 470);
+        ctx.font = '18px Sarabun, sans-serif'; ctx.fillStyle = '#64748b';
+        ctx.fillText('เอกสารคู่กับใบรายงานผลเลขที่: ' + d.docNo, W - 26, 535);
+
+        const a = document.createElement('a');
+        a.download = `Sticker_${sanitizeFilenamePart(d.sn, 'OXC')}_${sanitizeFilenamePart(d.pmDate, 'PM')}.png`;
+        a.href = c.toDataURL('image/png');
+        a.click();
+      };
+
+      const logoImg = new Image();
+      logoImg.onload = () => {
+        if (d.sigSrc) {
+          const sImg = new Image();
+          sImg.onload = () => finishDraw(logoImg, sImg);
+          sImg.onerror = () => finishDraw(logoImg, null);
+          sImg.src = d.sigSrc;
+        } else {
+          finishDraw(logoImg, null);
+        }
+      };
+      logoImg.src = LOGO_DATA_URI;
     }
 
     window.addEventListener('load', init);
