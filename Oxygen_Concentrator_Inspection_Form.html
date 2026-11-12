@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบฟอร์มตรวจสอบความถูกต้องและสอบเทียบเครื่องผลิตออกซิเจน (ISO 80601-2-69:2026 / ECRI 2017 / NIMT-Tani Easy)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
+
+    :root {
+      --primary: #0f3d5e;
+      --secondary: #1e6b99;
+      --border: #94a3b8;
+      --bg-light: #f8fafc;
+      --pass-bg: #dcfce7;
+      --pass-text: #166534;
+      --warn-bg: #fef9c3;
+      --warn-text: #854d0e;
+      --fail-bg: #fee2e2;
+      --fail-text: #991b1b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Sarabun', sans-serif;
+      font-size: 12px;
+      line-height: 1.38;
+      color: #1e293b;
+      background-color: #e2e8f0;
+      margin: 0;
+      padding: 16px;
+    }
+
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 12px auto;
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toolbar-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--secondary); }
+    .btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
+    .btn-outline:hover { background: #f1f5f9; }
+    .btn-danger { background: #dc2626; color: #fff; }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 16px auto;
+      background: #ffffff;
+      padding: 10mm 12mm;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-title h1 {
+      margin: 0;
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .header-title p {
+      margin: 2px 0 0 0;
+      font-size: 11px;
+      color: #475569;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 11px;
+      color: #334155;
+    }
+
+    .section-title {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 3px 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin: 8px 0 5px 0;
+      border-radius: 3px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+      margin-bottom: 6px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px 8px;
+      margin-bottom: 6px;
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+    }
+
+    .field label {
+      font-weight: 600;
+      white-space: nowrap;
+      color: #334155;
+    }
+
+    .field input[type="text"],
+    .field input[type="number"],
+    .field input[type="date"],
+    .field select {
+      flex: 1;
+      border: none;
+      border-bottom: 1px dotted #64748b;
+      padding: 1px 3px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 11.5px;
+      background: transparent;
+      min-width: 35px;
+    }
+
+    .field input:focus, .tbl-input:focus {
+      outline: none;
+      background: #f0f9ff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 3px 5px;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #e2e8f0;
+      color: #0f172a;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .table-dark-header th {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .center { text-align: center; }
+    .note-warn { color: #b91c1c; font-weight: 600; }
+    .note-info { color: #0369a1; font-weight: 600; }
+
+    .chk-group {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .chk-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+
+    .tbl-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 11px;
+      text-align: center;
+      padding: 1px;
+    }
+
+    .tbl-input-left { text-align: left; }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 10.5px;
+    }
+    .badge-pass { background: var(--pass-bg); color: var(--pass-text); }
+    .badge-warn { background: var(--warn-bg); color: var(--warn-text); }
+    .badge-fail { background: var(--fail-bg); color: var(--fail-text); }
+
+    .box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 5px 8px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+
+    .sign-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    .sign-box {
+      border: 1px solid #cbd5e1;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .sign-line {
+      border-bottom: 1px dotted #475569;
+      height: 24px;
+      margin: 4px 10px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 4px;
+      font-family: 'Sarabun', sans-serif;
+      font-size: 11.5px;
+      resize: vertical;
+    }
+
+    .page-break { page-break-before: always; }
+
+    @media print {
+      body { background: none; padding: 0; margin: 0; }
+      .toolbar { display: none !important; }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        padding: 8mm 10mm;
+        width: 100%;
+        min-height: auto;
+      }
+      .section-title, .table-dark-header th, .badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-group">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ พิมพ์ / บันทึก PDF (A4 3 หน้า)</button>
+      <label class="btn btn-outline" style="margin:0;">
+        📂 นำเข้าไฟล์ .CSV จาก CYD Analyzer
+        <input type="file" id="csvInput" accept=".csv,.txt" style="display:none;" onchange="importCSV(event)">
+      </label>
+    </div>
+    <div class="toolbar-group">
+      <button class="btn btn-outline" onclick="checkAllPass()">✅ ติ๊กผ่านเชิงคุณภาพทั้งหมด</button>
+      <button class="btn btn-danger" onclick="if(confirm('ล้างข้อมูลทั้งหมด?')) location.reload()">🔄 ล้างฟอร์ม</button>
+    </div>
+  </div>
+
+  <!-- ================= หน้าที่ 1: ข้อมูลทั่วไป, เครื่องมือมาตรฐาน, การตรวจเชิงคุณภาพ ================= -->
+  <div class="page">
+    <div class="header">
+      <div class="header-title">
+        <h1>ใบรับรองและบันทึกการตรวจสอบความถูกต้องเครื่องผลิตออกซิเจน</h1>
+        <p>มาตรฐานอ้างอิง: <strong>ISO 80601-2-69:2026</strong> • <strong>ECRI ปี 2017</strong> • <strong>Calibration Certificate Online (Tani Easy / NIMT)</strong></p>
+      </div>
+      <div class="header-meta">
+        <div>Certification / Doc No.: <input type="text" style="width:90px; border:none; border-bottom:1px dotted #64748b; text-align:center;" placeholder="O2-CAL-001"></div>
+        <div>วันที่สอบเทียบ: <input type="date" id="inspectDate" style="border:none; border-bottom:1px dotted #64748b;"> | หน้า 1/3</div>
+      </div>
+    </div>
+
+    <div class="section-title">1. รายการสอบเทียบ (Unit Under Calibration - UUC) และสภาวะแวดล้อม</div>
+    <div class="grid-2">
+      <div class="field"><label>ผู้รับบริการ / หน่วยงาน:</label><input type="text" placeholder="เช่น โรงพยาบาล / หอผู้ป่วย"></div>
+      <div class="field"><label>รหัสครุภัณฑ์ (Asset ID):</label><input type="text" placeholder="เช่น 6510-001-XXXX"></div>
+      <div class="field"><label>ยี่ห้อ / รุ่น (Brand / Model):</label><input type="text" placeholder="เช่น Yuwell 9F-5BW"></div>
+      <div class="field"><label>หมายเลขเครื่อง (S/N):</label><input type="text" placeholder="Serial Number"></div>
+      <div class="field"><label>ช่วงการสอบเทียบ (Rated Max Flow):</label><input type="number" id="maxFlowSetting" value="5" step="0.5" style="max-width:55px; text-align:center;" onchange="updateMaxFlowLabel()"> <span>L/min</span></div>
+      <div class="field"><label>ความละเอียดเครื่องวัด (UUC Resolution):</label><input type="number" id="uucResFlow" value="0.5" step="0.1" style="max-width:55px; text-align:center;" onchange="calcAll()"> <span>L/min | ชั่วโมงสะสม:</span> <input type="text" style="max-width:65px;" placeholder="____ ชม."></div>
+    </div>
+
+    <div class="box">
+      <div class="grid-4" style="margin-bottom:4px;">
+        <div class="field"><label>อุณหภูมิเริ่ม:</label><input type="number" id="tempStart" step="0.1" placeholder="25.1"> <span>°C</span></div>
+        <div class="field"><label>อุณหภูมิสิ้นสุด:</label><input type="number" id="tempEnd" step="0.1" placeholder="25.3"> <span>°C</span></div>
+        <div class="field"><label>ความชื้นเริ่ม:</label><input type="number" id="rhStart" step="0.1" placeholder="50.0"> <span>%RH</span></div>
+        <div class="field"><label>ความชื้นสิ้นสุด:</label><input type="number" id="rhEnd" step="0.1" placeholder="50.0"> <span>%RH</span></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:0;">
+        <div class="field"><label>สภาวะ Gas Standard:</label><input type="text" value="STPD 20 (ความดัน 101.3 kPa, อุณหภูมิ 20 °C, สภาวะแห้ง)" readonly style="font-weight:700; color:#0f3d5e;"></div>
+        <div class="field"><label>การเตรียมเครื่องก่อนวัด:</label><input type="text" value="ปิดกระปุกน้ำทำความชื้น • ใส่ตัวกรองป้องกัน • อุ่นเครื่อง ≥ 20 นาที" readonly></div>
+      </div>
+    </div>
+
+    <div class="section-title">2. เครื่องมือมาตรฐานที่ใช้ทดสอบและสอบเทียบ (Reference Standard Instruments)</div>
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th>รายการเครื่องมือมาตรฐาน</th>
+          <th style="width:120px;">รุ่น (Model)</th>
+          <th style="width:105px;">รหัส/S/N</th>
+          <th style="width:95px;">Cert. No.</th>
+          <th style="width:110px;">ห้องปฏิบัติการ</th>
+          <th style="width:75px;">Cal. Date</th>
+          <th style="width:75px;">Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gas Flow & O₂ Analyzer</td>
+          <td><input type="text" class="tbl-input" id="stdModel" value="CYD O2 Analyzer"></td>
+          <td><input type="text" class="tbl-input" id="stdSn" placeholder="O2-CYD-001"></td>
+          <td><input type="text" class="tbl-input" placeholder="Cert No."></td>
+          <td><input type="text" class="tbl-input" placeholder="NIMT / ISO17025"></td>
+          <td><input type="text" class="tbl-input" placeholder="DD/MM/YY"></td>
+          <td><input type="text" class="tbl-input" placeholder="DD/MM/YY"></td>
+        </tr>
+        <tr>
+          <td>Electrical Safety Analyzer</td>
+          <td><input type="text" class="tbl-input" placeholder="รุ่น"></td>
+          <td><input type="text" class="tbl-input" placeholder="S/N"></td>
+          <td><input type="text" class="tbl-input" placeholder="Cert No."></td>
+          <td><input type="text" class="tbl-input" placeholder="Lab"></td>
+          <td><input type="text" class="tbl-input" placeholder="DD/MM/YY"></td>
+          <td><input type="text" class="tbl-input" placeholder="DD/MM/YY"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">3. การตรวจเชิงคุณภาพและความปลอดภัยเบื้องต้น (Qualitative Tasks - 16 รายการ)</div>
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th style="width:30px;">ข้อ</th>
+          <th style="width:135px;">หัวข้อ</th>
+          <th>รายละเอียดเกณฑ์การตรวจสอบ</th>
+          <th style="width:105px;">ผลการตรวจ</th>
+          <th style="width:85px;">หมายเหตุ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="center">1</td><td>ตัวเครื่อง</td><td>สะอาด ฝาครบ น็อตแน่น ไม่มีรอยหกของเหลว; ไม่มีจุดไฟฟ้าอันตรายที่ผู้ป่วย/เด็กเข้าถึงได้</td><td class="center"><div class="chk-group"><label><input type="radio" name="q1" value="pass"> ผ่าน</label><label><input type="radio" name="q1" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">2</td><td>ล้อ</td><td>หมุนและเลี้ยวได้ ไม่มีเศษผ้าพันล้อ; ยกเครื่องแล้วล้อไม่หลุด</td><td class="center"><div class="chk-group"><label><input type="radio" name="q2" value="pass"> ผ่าน</label><label><input type="radio" name="q2" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">3</td><td>เต้าเสียบ</td><td>ไม่ชำรุด ขาไม่หลวม ขยับไม่มีเสียงชิ้นส่วนหลวม (ควรเป็น Hospital Grade)</td><td class="center"><div class="chk-group"><label><input type="radio" name="q3" value="pass"> ผ่าน</label><label><input type="radio" name="q3" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">4</td><td>สายไฟ</td><td>ไม่ชำรุดโดยเฉพาะใกล้ตัวเครื่อง; ยาวพอโดยไม่ต้องใช้สายต่อ (≈ 3 m)</td><td class="center"><div class="chk-group"><label><input type="radio" name="q4" value="pass"> ผ่าน</label><label><input type="radio" name="q4" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">5</td><td>ตัวกันสายหักงอ</td><td>ยึดสายแน่นทั้งสองปลาย</td><td class="center"><div class="chk-group"><label><input type="radio" name="q5" value="pass"> ผ่าน</label><label><input type="radio" name="q5" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">6</td><td>เบรกเกอร์/ฟิวส์</td><td>เบรกเกอร์ทำงาน ฟิวส์มีขนาดและชนิดถูกต้อง มีการระบุค่า</td><td class="center"><div class="chk-group"><label><input type="radio" name="q6" value="pass"> ผ่าน</label><label><input type="radio" name="q6" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">7</td><td>ท่อและสายยาง</td><td>ไม่แตก ไม่หักงอ ไม่สกปรก <span class="note-warn">(ฝุ่นในท่อบ่งชี้ว่า Sieve bed อาจมีปัญหา)</span></td><td class="center"><div class="chk-group"><label><input type="radio" name="q7" value="pass"> ผ่าน</label><label><input type="radio" name="q7" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">8</td><td>แผ่นกรอง</td><td>มีครบและสภาพดี แผ่นกรองอากาศเข้าต้องล้าง/เปลี่ยนระหว่างผู้ป่วย</td><td class="center"><div class="chk-group"><label><input type="radio" name="q8" value="pass"> ผ่าน</label><label><input type="radio" name="q8" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">9</td><td>ปุ่มควบคุม/สวิตช์</td><td>สภาพดี ลูกบิดไม่ลื่นบนแกน จ่ายการไหลของอากาศได้ตลอดช่วง (0–5 L/min)</td><td class="center"><div class="chk-group"><label><input type="radio" name="q9" value="pass"> ผ่าน</label><label><input type="radio" name="q9" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">10</td><td>พัดลม/คอมเพรสเซอร์</td><td>มีลมอุ่นออกทางช่องระบาย <span class="note-warn">(ถ้ามีเสียงห้ามใช้จนกว่าจะตรวจคอมเพรสเซอร์)</span></td><td class="center"><div class="chk-group"><label><input type="radio" name="q10" value="pass"> ผ่าน</label><label><input type="radio" name="q10" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">11</td><td>ไฟสถานะ/จอแสดงผล</td><td>แสดงผลครบทุกส่วน OCSI แสดงผลปกติ บันทึกชั่วโมงเครื่อง</td><td class="center"><div class="chk-group"><label><input type="radio" name="q11" value="pass"> ผ่าน</label><label><input type="radio" name="q11" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">12</td><td>Flowmeter</td><td>ใช้นิ้วปิดทางออก ลูกบอลต้องตกถึงก้น <span class="note-info">(ถ้าไม่ตก ให้ตรวจหาการรั่ว)</span></td><td class="center"><div class="chk-group"><label><input type="radio" name="q12" value="pass"> ผ่าน</label><label><input type="radio" name="q12" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">13</td><td>สัญญาณเตือน</td><td>ไฟดับ ช่วงเริ่มเครื่อง OCSI (&lt;82%) และอื่นๆ ตามผู้ผลิต</td><td class="center"><div class="chk-group"><label><input type="radio" name="q13" value="pass"> ผ่าน</label><label><input type="radio" name="q13" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">14</td><td>เสียงขณะทำงาน</td><td>ไม่ดังผิดปกติ จังหวะสลับรอบ (PSA) สม่ำเสมอหลายครั้งต่อนาที</td><td class="center"><div class="chk-group"><label><input type="radio" name="q14" value="pass"> ผ่าน</label><label><input type="radio" name="q14" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">15</td><td>ฉลากและป้าย</td><td>ครบ อ่านง่าย มีคำเตือนเรื่องประกายไฟ เปลวไฟ บุหรี่</td><td class="center"><div class="chk-group"><label><input type="radio" name="q15" value="pass"> ผ่าน</label><label><input type="radio" name="q15" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+        <tr><td class="center">16</td><td>อุปกรณ์เสริม</td><td>ชนิดถูกต้อง (เช่น ขวดทำความชื้น) มีคู่มือผู้ใช้และคู่มือบริการ</td><td class="center"><div class="chk-group"><label><input type="radio" name="q16" value="pass"> ผ่าน</label><label><input type="radio" name="q16" value="fail"> ไม่ผ่าน</label></div></td><td><input type="text" class="tbl-input tbl-input-left"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================= หน้าที่ 2: ตารางบันทึกผลการสอบเทียบ & เกณฑ์ ECRI / ISO 80601-2-69:2026 ================= -->
+  <div class="page page-break">
+    <div class="header">
+      <div class="header-title">
+        <h1>ส่วนที่ 4–5: บันทึกผลการวัดเชิงปริมาณและสอบเทียบ (ECRI 2017 & ISO 80601-2-69:2026)</h1>
+        <p>เกณฑ์ตัดสิน: Flow ±10% หรือ ±0.20 L/min (ค่าใดมากกว่า) • O₂ ≥ 90.0 Vol.% (ECRI/Tani Easy) หรือตามผู้ผลิต แต่ห้ามต่ำกว่า 82.0 Vol.%</p>
+      </div>
+      <div class="header-meta">หน้า 2/3</div>
+    </div>
+
+    <!-- ความปลอดภัยทางไฟฟ้า + Back Pressure -->
+    <div class="section-title">4. ความปลอดภัยทางไฟฟ้า และการทดสอบตาม ISO 80601-2-69:2026 / ECRI 2017</div>
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th style="width:45px;">ข้อ</th>
+          <th>รายการทดสอบ</th>
+          <th style="width:230px;">เกณฑ์มาตรฐาน</th>
+          <th style="width:120px;">ค่าที่วัดได้</th>
+          <th style="width:100px;">ผลการประเมิน</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center">4.1</td>
+          <td>ความต้านทานสายดิน (Protective Earth Resistance)</td>
+          <td class="center"><strong>≤ 0.5 Ω</strong></td>
+          <td><input type="number" id="qEarth" step="0.01" class="tbl-input" placeholder="Ω" oninput="evalSafety()"></td>
+          <td class="center" id="resEarth">-</td>
+        </tr>
+        <tr>
+          <td class="center">4.2</td>
+          <td>กระแสรั่วไหลขณะสัมผัส (Touch Leakage Current)</td>
+          <td class="center"><strong>≤ 500 µA</strong></td>
+          <td><input type="number" id="qLeak" step="1" class="tbl-input" placeholder="µA" oninput="evalSafety()"></td>
+          <td class="center" id="resLeak">-</td>
+        </tr>
+        <tr>
+          <td class="center">4.3</td>
+          <td>ISO: ทดสอบ Flow ที่ Back Pressure = 7 kPa (±1 kPa) (20% / 50% / 100%)</td>
+          <td class="center"><strong>± 10% หรือ ± 0.20 L/min</strong></td>
+          <td><input type="text" class="tbl-input" placeholder="20%:__ / 50%:__ / 100%:__"></td>
+          <td class="center"><div class="chk-group"><label><input type="radio" name="bp7" value="pass"> PASS</label><label><input type="radio" name="bp7" value="fail"> FAIL</label></div></td>
+        </tr>
+        <tr>
+          <td class="center">4.4</td>
+          <td>ECRI: ทดสอบ Back Pressure สูงสุด ณ อัตราไหลสูงสุด (100% Max Flow)</td>
+          <td class="center">เป็นไปตามที่ผู้ผลิตกำหนด (WHO ≥ 55 kPa)</td>
+          <td><input type="number" id="qMaxBp" step="0.1" class="tbl-input" placeholder="kPa"></td>
+          <td class="center"><div class="chk-group"><label><input type="radio" name="bpmax" value="pass"> PASS</label><label><input type="radio" name="bpmax" value="fail"> FAIL</label></div></td>
+        </tr>
+        <tr>
+          <td class="center">4.5</td>
+          <td>ISO: ทดสอบความเข้มข้น O₂ ที่ 100% Flow + ความต้านทานมาตรฐาน (Ø 4mm, L 40mm)</td>
+          <td class="center">≥ ค่าขั้นต่ำในคู่มือ (ห้าม &lt; 82%)</td>
+          <td><input type="number" step="0.1" class="tbl-input" placeholder="%Vol"></td>
+          <td class="center"><div class="chk-group"><label><input type="radio" name="stdRes" value="pass"> PASS</label><label><input type="radio" name="stdRes" value="fail"> FAIL</label></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ตารางบันทึกผลการสอบเทียบตามรูปแบบ Tani Easy (Page 13) -->
+    <div class="section-title">5. ตารางบันทึกผลการสอบเทียบ (Calibration Certificate Online - Tani Easy Format)</div>
+    <p style="margin:2px 0 5px 0; font-size:11px; color:#334155;">• สอบเทียบที่ <strong>2 L/min</strong> และ <strong>ค่าสูงสุด (<span id="lblMaxFlowText">5</span> L/min)</strong> แบบขั้นบันได • ปลายเปิดเจอบรรยากาศ (Back Pressure = 0 kPa) • ตั้ง Gas Standard: <strong>STPD 20</strong></p>
+
+    <!-- ตารางบันทึกค่า 3 ครั้ง -->
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th rowspan="2" style="width:95px;">Flow Setting<br>(L/min)</th>
+          <th colspan="3">STD Flow Reading (L/min)</th>
+          <th colspan="3">STD %O₂ Reading (Vol%)</th>
+        </tr>
+        <tr>
+          <th>1</th><th>2</th><th>3</th>
+          <th>1</th><th>2</th><th>3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><strong>2</strong></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f2_1" oninput="calcAll()"></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f2_2" oninput="calcAll()"></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f2_3" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o2_1" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o2_2" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o2_3" oninput="calcAll()"></td>
+        </tr>
+        <tr>
+          <td class="center"><strong id="lblMaxFlow">5</strong></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f5_1" oninput="calcAll()"></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f5_2" oninput="calcAll()"></td>
+          <td><input type="number" step="0.01" class="tbl-input" id="f5_3" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o5_1" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o5_2" oninput="calcAll()"></td>
+          <td><input type="number" step="0.1" class="tbl-input" id="o5_3" oninput="calcAll()"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ตารางสรุป Criteria (Page 13 ล่าง) -->
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th colspan="2">Average</th>
+          <th colspan="4">Flow criteria (L/min)</th>
+          <th colspan="4">Oxygen concentration criteria (Vol%)</th>
+        </tr>
+        <tr>
+          <th>STD Flow (L/min)</th>
+          <th>STD %O₂</th>
+          <th>MPE</th>
+          <th>Lower Limit</th>
+          <th>Upper Limit</th>
+          <th>Results</th>
+          <th>MPE (เกณฑ์)</th>
+          <th>Lower</th>
+          <th>Upper</th>
+          <th>Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center" id="avgF2" style="font-weight:700;">-</td>
+          <td class="center" id="avgO2" style="font-weight:700;">-</td>
+          <td class="center" id="mpeF2">±10% (±0.2)</td>
+          <td class="center" id="lowF2">1.8</td>
+          <td class="center" id="uppF2">2.2</td>
+          <td class="center" id="resF2">-</td>
+          <td class="center">90.0 (≥82)</td>
+          <td class="center">90.0</td>
+          <td class="center">-</td>
+          <td class="center" id="resO2">-</td>
+        </tr>
+        <tr>
+          <td class="center" id="avgF5" style="font-weight:700;">-</td>
+          <td class="center" id="avgO5" style="font-weight:700;">-</td>
+          <td class="center" id="mpeF5">±10%</td>
+          <td class="center" id="lowF5">4.5</td>
+          <td class="center" id="uppF5">5.5</td>
+          <td class="center" id="resF5">-</td>
+          <td class="center">90.0 (≥82)</td>
+          <td class="center">90.0</td>
+          <td class="center">-</td>
+          <td class="center" id="resO5">-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- กฎ 1 ใน 3 ของ ISO 80601-2-69:2026 -->
+    <div class="box">
+      <strong>การประเมินตามเกณฑ์ ISO 80601-2-69:2026 (กฎความไม่แน่นอนขยาย Ue k=2 ≤ 1/3 ของความคลาดเคลื่อนที่ทดสอบ):</strong>
+      <div id="isoRuleCheck" style="margin-top:3px; color:#334155;">กรุณากรอกค่าในตารางข้อ 5 เพื่อตรวจสอบความสอดคล้องกับกฎ 1/3 ในหน้า 3...</div>
+    </div>
+  </div>
+
+  <!-- ================= หน้าที่ 3: รายงานผลการสอบเทียบ & Uncertainty Budget (NIMT / Tani Easy) ================= -->
+  <div class="page page-break">
+    <div class="header">
+      <div class="header-title">
+        <h1>ส่วนที่ 6–7: ตารางรายงานผลการสอบเทียบและงบประมาณความไม่แน่นอน (Uncertainty Budget)</h1>
+        <p>การประเมินความไม่แน่นอนของการวัดเป็นไปตามแนวทาง JCGM 100:2008 (ความเชื่อมั่น 95%, k ≈ 2) • ISO 80601-2-69:2026</p>
+      </div>
+      <div class="header-meta">หน้า 3/3</div>
+    </div>
+
+    <!-- พารามิเตอร์สำหรับคำนวณ Uncertainty Budget -->
+    <div class="box">
+      <strong>พารามิเตอร์เครื่องมือมาตรฐานที่ใช้คำนวณ Uncertainty Budget (ปรับแก้ได้ตาม Spec/Cert ของเครื่องมือวัด):</strong>
+      <div class="grid-4" style="margin-top:4px; margin-bottom:0;">
+        <div class="field"><label>Flow Spec (%):</label><input type="number" id="specFlowPct" value="1.75" step="0.05" oninput="calcAll()"></div>
+        <div class="field"><label>Flow CMC (%):</label><input type="number" id="cmcFlowPct" value="3.5" step="0.1" oninput="calcAll()"></div>
+        <div class="field"><label>STD Flow Res:</label><input type="number" id="stdResFlow" value="0.1" step="0.01" oninput="calcAll()"></div>
+        <div class="field"><label>CMC O₂ (Vol%):</label><input type="number" id="cmcO2" value="2.5" step="0.1" oninput="calcAll()"></div>
+        <div class="field"><label>O₂ u_std (%):</label><input type="number" id="uStdO2" value="1.155" step="0.01" oninput="calcAll()"></div>
+        <div class="field"><label>STD O₂ Res:</label><input type="number" id="stdResO2" value="0.1" step="0.01" oninput="calcAll()"></div>
+        <div class="field"><label>UUC Res (L/min):</label><input type="number" id="uucResForUnc" value="0.1" step="0.05" oninput="calcAll()"></div>
+        <div class="field"><label>CMC Min Flow:</label><input type="number" id="cmcFlowMin" value="0.07" step="0.01" oninput="calcAll()"></div>
+      </div>
+    </div>
+
+    <div class="section-title">6. ตารางรายงานผลการสอบเทียบและ Uncertainty Budget: อัตราการไหล (Flowrate)</div>
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th>UUC Setting<br>(L/min)</th>
+          <th>STD<br>(L/min)</th>
+          <th>Error<br>(L/min)</th>
+          <th>Error<br>(%)</th>
+          <th>u_std</th>
+          <th>u_std_res</th>
+          <th>u_UUC_res</th>
+          <th>u_rep</th>
+          <th>uc</th>
+          <th>DoF</th>
+          <th>k</th>
+          <th>Ue<br>(L/min)</th>
+          <th>Ue<br>(%)</th>
+          <th>Ureport<br>(L/min)</th>
+          <th>Ureport<br>(%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><strong>2.00</strong></td>
+          <td class="center" id="rF2_std">-</td>
+          <td class="center" id="rF2_err">-</td>
+          <td class="center" id="rF2_errP">-</td>
+          <td class="center" id="rF2_ustd">-</td>
+          <td class="center" id="rF2_usres">-</td>
+          <td class="center" id="rF2_uures">-</td>
+          <td class="center" id="rF2_urep">-</td>
+          <td class="center" id="rF2_uc">-</td>
+          <td class="center" id="rF2_dof">-</td>
+          <td class="center" id="rF2_k">-</td>
+          <td class="center" id="rF2_ue">-</td>
+          <td class="center" id="rF2_ueP">-</td>
+          <td class="center" id="rF2_ureport" style="font-weight:700;">-</td>
+          <td class="center" id="rF2_ureportP" style="font-weight:700;">-</td>
+        </tr>
+        <tr>
+          <td class="center"><strong id="rMaxFlow">5.00</strong></td>
+          <td class="center" id="rF5_std">-</td>
+          <td class="center" id="rF5_err">-</td>
+          <td class="center" id="rF5_errP">-</td>
+          <td class="center" id="rF5_ustd">-</td>
+          <td class="center" id="rF5_usres">-</td>
+          <td class="center" id="rF5_uures">-</td>
+          <td class="center" id="rF5_urep">-</td>
+          <td class="center" id="rF5_uc">-</td>
+          <td class="center" id="rF5_dof">-</td>
+          <td class="center" id="rF5_k">-</td>
+          <td class="center" id="rF5_ue">-</td>
+          <td class="center" id="rF5_ueP">-</td>
+          <td class="center" id="rF5_ureport" style="font-weight:700;">-</td>
+          <td class="center" id="rF5_ureportP" style="font-weight:700;">-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">7. ตารางรายงานผลการสอบเทียบและ Uncertainty Budget: ความเข้มข้นออกซิเจน (Oxygen Concentration)</div>
+    <table class="table-dark-header">
+      <thead>
+        <tr>
+          <th>Flow Setting<br>(L/min)</th>
+          <th>STD Reading<br>(Vol%)</th>
+          <th>u_std</th>
+          <th>u_std_res</th>
+          <th>u_rep</th>
+          <th>uc</th>
+          <th>DoF</th>
+          <th>k</th>
+          <th>Ue (Vol%)</th>
+          <th>Ureport (Vol%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><strong>2</strong></td>
+          <td class="center" id="rO2_std">-</td>
+          <td class="center" id="rO2_ustd">-</td>
+          <td class="center" id="rO2_usres">-</td>
+          <td class="center" id="rO2_urep">-</td>
+          <td class="center" id="rO2_uc">-</td>
+          <td class="center" id="rO2_dof">-</td>
+          <td class="center" id="rO2_k">-</td>
+          <td class="center" id="rO2_ue">-</td>
+          <td class="center" id="rO2_ureport" style="font-weight:700;">-</td>
+        </tr>
+        <tr>
+          <td class="center"><strong id="rMaxFlowO2">5</strong></td>
+          <td class="center" id="rO5_std">-</td>
+          <td class="center" id="rO5_ustd">-</td>
+          <td class="center" id="rO5_usres">-</td>
+          <td class="center" id="rO5_urep">-</td>
+          <td class="center" id="rO5_uc">-</td>
+          <td class="center" id="rO5_dof">-</td>
+          <td class="center" id="rO5_k">-</td>
+          <td class="center" id="rO5_ue">-</td>
+          <td class="center" id="rO5_ureport" style="font-weight:700;">-</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="section-title">8. สรุปผลการสอบเทียบและรับรอง (Conclusion & Sign-off)</div>
+    <div class="box">
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:5px;">
+        <strong>ผลการประเมินภาพรวม:</strong>
+        <label><input type="radio" name="finalRes" value="PASS"> 🟢 <strong>PASS (≥90 Vol.% & Flow ±10%)</strong></label>
+        <label><input type="radio" name="finalRes" value="WHO"> 🟡 <strong>ผ่านเกณฑ์ขั้นต่ำ WHO (82–89.9%)</strong> เฝ้าระวัง</label>
+        <label><input type="radio" name="finalRes" value="FAIL"> 🔴 <strong>FAIL (&lt;82% หรือ Flow เกินเกณฑ์)</strong> งดใช้งาน</label>
+      </div>
+      <div><strong>ความเห็นเพิ่มเติม / การสอบกลับได้ทางมาตรวิทยา:</strong></div>
+      <textarea rows="3" id="remarks" placeholder="ผลการวัดที่รายงานในรายงานผลการสอบเทียบนี้สามารถสอบกลับได้ถึงมาตรฐานการวัดแห่งชาติ (National Standards) ผ่านใบรับรองการสอบเทียบ..."></textarea>
+    </div>
+
+    <div class="sign-grid">
+      <div class="sign-box">
+        <div><strong>ผู้สอบเทียบ (Calibrated by)</strong></div>
+        <div class="sign-line"></div>
+        <div>(<input type="text" style="border:none; border-bottom:1px dotted #94a3b8; text-align:center; width:130px;" placeholder="ชื่อ-สกุล">)</div>
+        <div style="margin-top:3px;">วันที่: ____/____/______</div>
+      </div>
+      <div class="sign-box">
+        <div><strong>ผู้ทวนสอบ (Checked by)</strong></div>
+        <div class="sign-line"></div>
+        <div>(<input type="text" style="border:none; border-bottom:1px dotted #94a3b8; text-align:center; width:130px;" placeholder="ชื่อ-สกุล">)</div>
+        <div style="margin-top:3px;">วันที่: ____/____/______</div>
+      </div>
+      <div class="sign-box">
+        <div><strong>ผู้รับรอง (Approved by)</strong></div>
+        <div class="sign-line"></div>
+        <div>(<input type="text" style="border:none; border-bottom:1px dotted #94a3b8; text-align:center; width:130px;" placeholder="ชื่อ-สกุล">)</div>
+        <div style="margin-top:3px;">วันที่: ____/____/______</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('inspectDate').valueAsDate = new Date();
+
+    function updateMaxFlowLabel() {
+      const maxF = parseFloat(document.getElementById('maxFlowSetting').value) || 5.0;
+      document.getElementById('lblMaxFlow').textContent = maxF;
+      document.getElementById('lblMaxFlowText').textContent = maxF;
+      document.getElementById('rMaxFlow').textContent = maxF.toFixed(2);
+      document.getElementById('rMaxFlowO2').textContent = maxF;
+      calcAll();
+    }
+
+    function checkAllPass() {
+      for (let i = 1; i <= 16; i++) {
+        const rad = document.querySelector(`input[name="q${i}"][value="pass"]`);
+        if (rad) rad.checked = true;
+      }
+    }
+
+    function setBadge(elId, type, text) {
+      const el = document.getElementById(elId);
+      if (!text || text === '-') { el.innerHTML = '-'; return; }
+      const cls = type === 'pass' ? 'badge-pass' : (type === 'warn' ? 'badge-warn' : 'badge-fail');
+      el.innerHTML = `<span class="badge ${cls}">${text}</span>`;
+    }
+
+    function evalSafety() {
+      const earth = parseFloat(document.getElementById('qEarth').value);
+      if (!isNaN(earth)) setBadge('resEarth', earth <= 0.5 ? 'pass' : 'fail', earth <= 0.5 ? 'PASS' : 'FAIL');
+      else setBadge('resEarth', '', '-');
+
+      const leak = parseFloat(document.getElementById('qLeak').value);
+      if (!isNaN(leak)) setBadge('resLeak', leak <= 500 ? 'pass' : 'fail', leak <= 500 ? 'PASS' : 'FAIL');
+      else setBadge('resLeak', '', '-');
+    }
+
+    // ค่า Student-t (95% confidence, two-tailed) จาก DoF
+    function getTValue(dof) {
+      if (dof >= 1000) return 2.000;
+      const tTable = [
+        [1, 12.71], [2, 4.303], [3, 3.182], [4, 2.776], [5, 2.571],
+        [6, 2.447], [7, 2.365], [8, 2.306], [9, 2.262], [10, 2.228],
+        [12, 2.179], [15, 2.131], [19, 2.093], [20, 2.086], [25, 2.060],
+        [30, 2.042], [40, 2.021], [60, 2.000], [100, 1.984], [300, 2.01], [500, 2.00]
+      ];
+      if (dof <= 1) return 12.71;
+      for (let i = 0; i < tTable.length - 1; i++) {
+        if (dof >= tTable[i][0] && dof <= tTable[i + 1][0]) {
+          // Interpolate + match NIMT 2.000-2.14 convention
+          const ratio = (dof - tTable[i][0]) / (tTable[i + 1][0] - tTable[i][0]);
+          const val = tTable[i][1] + ratio * (tTable[i + 1][1] - tTable[i][1]);
+          return Math.max(val, 2.000);
+        }
+      }
+      return 2.000;
+    }
+
+    function getStats(ids) {
+      const vals = ids.map(id => parseFloat(document.getElementById(id).value)).filter(v => !isNaN(v));
+      if (vals.length === 0) return null;
+      const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+      let sd = 0;
+      if (vals.length > 1) {
+        const variance = vals.reduce((a, b) => a + Math.pow(b - avg, 2), 0) / (vals.length - 1);
+        sd = Math.sqrt(variance);
+      }
+      return { avg, sd, n: vals.length, uRep: sd / Math.sqrt(vals.length) };
+    }
+
+    function computeFlowRow(setting, ids, prefix, avgId, lowId, uppId, resId) {
+      const st = getStats(ids);
+      const tol = Math.max(setting * 0.10, 0.2);
+      document.getElementById(lowId).textContent = (setting - tol).toFixed(1);
+      document.getElementById(uppId).textContent = (setting + tol).toFixed(1);
+
+      const clearIds = ['std','err','errP','ustd','usres','uures','urep','uc','dof','k','ue','ueP','ureport','ureportP'];
+      if (!st) {
+        document.getElementById(avgId).textContent = '-';
+        setBadge(resId, '', '-');
+        clearIds.forEach(c => document.getElementById(`${prefix}_${c}`).textContent = '-');
+        return null;
+      }
+
+      document.getElementById(avgId).textContent = st.avg.toFixed(2);
+      const pass = Math.abs(st.avg - setting) <= tol;
+      setBadge(resId, pass ? 'pass' : 'fail', pass ? 'PASS' : 'FAIL');
+
+      // Uncertainty Budget Flow
+      const specPct = (parseFloat(document.getElementById('specFlowPct').value) || 1.75) / 100.0;
+      const cmcPct = parseFloat(document.getElementById('cmcFlowPct').value) || 3.5;
+      const cmcMin = parseFloat(document.getElementById('cmcFlowMin').value) || 0.07;
+      const stdRes = parseFloat(document.getElementById('stdResFlow').value) || 0.1;
+      const uucRes = parseFloat(document.getElementById('uucResForUnc').value) || 0.1;
+
+      const err = st.avg - setting;
+      const errPct = (err / setting) * 100.0;
+      const uStd = st.avg * specPct;
+      const uStdRes = stdRes / (2 * Math.sqrt(3));
+      const uUucRes = uucRes / (2 * Math.sqrt(3));
+      const uRep = st.uRep;
+      const uc = Math.sqrt(uStd*uStd + uStdRes*uStdRes + uUucRes*uUucRes + uRep*uRep);
+
+      let dof = 100000;
+      if (uRep > 0.0001 && st.n > 1) {
+        dof = Math.round(Math.pow(uc, 4) / (Math.pow(uRep, 4) / (st.n - 1)));
+        if (dof > 100000) dof = 100000;
+      }
+      const k = dof >= 100000 ? 2.000 : getTValue(dof);
+      const ue = k * uc;
+      const uePct = (ue / setting) * 100.0;
+      const cmcVal = Math.max(setting * (cmcPct / 100.0), cmcMin);
+      const uReport = Math.max(ue, cmcVal);
+      const uReportPct = (uReport / setting) * 100.0;
+
+      document.getElementById(`${prefix}_std`).textContent = st.avg.toFixed(4);
+      document.getElementById(`${prefix}_err`).textContent = err.toFixed(4);
+      document.getElementById(`${prefix}_errP`).textContent = errPct.toFixed(4);
+      document.getElementById(`${prefix}_ustd`).textContent = uStd.toFixed(3);
+      document.getElementById(`${prefix}_usres`).textContent = uStdRes.toFixed(3);
+      document.getElementById(`${prefix}_uures`).textContent = uUucRes.toFixed(3);
+      document.getElementById(`${prefix}_urep`).textContent = uRep.toFixed(2);
+      document.getElementById(`${prefix}_uc`).textContent = uc.toFixed(2);
+      document.getElementById(`${prefix}_dof`).textContent = dof;
+      document.getElementById(`${prefix}_k`).textContent = k.toFixed(3);
+      document.getElementById(`${prefix}_ue`).textContent = ue.toFixed(2);
+      document.getElementById(`${prefix}_ueP`).textContent = uePct.toFixed(1);
+      document.getElementById(`${prefix}_ureport`).textContent = uReport.toFixed(3);
+      document.getElementById(`${prefix}_ureportP`).textContent = uReportPct.toFixed(3);
+
+      return { ue, tol, setting };
+    }
+
+    function computeO2Row(ids, prefix, avgId, resId) {
+      const st = getStats(ids);
+      const clearIds = ['std','ustd','usres','urep','uc','dof','k','ue','ureport'];
+      if (!st) {
+        document.getElementById(avgId).textContent = '-';
+        setBadge(resId, '', '-');
+        clearIds.forEach(c => document.getElementById(`${prefix}_${c}`).textContent = '-');
+        return;
+      }
+
+      document.getElementById(avgId).textContent = st.avg.toFixed(1);
+      if (st.avg >= 90.0) setBadge(resId, 'pass', 'PASS');
+      else if (st.avg >= 82.0) setBadge(resId, 'warn', 'WHO OK');
+      else setBadge(resId, 'fail', 'FAIL');
+
+      const uStd = parseFloat(document.getElementById('uStdO2').value) || 1.155;
+      const stdRes = parseFloat(document.getElementById('stdResO2').value) || 0.1;
+      const cmcO2 = parseFloat(document.getElementById('cmcO2').value) || 2.5;
+      const uStdRes = stdRes / (2 * Math.sqrt(3));
+      const uRep = st.uRep;
+      const uc = Math.sqrt(uStd*uStd + uStdRes*uStdRes + uRep*uRep);
+
+      let dof = 100000;
+      if (uRep > 0.0001 && st.n > 1) {
+        dof = Math.round(Math.pow(uc, 4) / (Math.pow(uRep, 4) / (st.n - 1)));
+        if (dof > 100000) dof = 100000;
+      }
+      const k = dof >= 100000 ? 2.00 : getTValue(dof);
+      const ue = k * uc;
+      const uReport = Math.max(ue, cmcO2);
+
+      document.getElementById(`${prefix}_std`).textContent = st.avg.toFixed(2);
+      document.getElementById(`${prefix}_ustd`).textContent = uStd.toFixed(3);
+      document.getElementById(`${prefix}_usres`).textContent = uStdRes.toFixed(3);
+      document.getElementById(`${prefix}_urep`).textContent = uRep.toFixed(2);
+      document.getElementById(`${prefix}_uc`).textContent = uc.toFixed(2);
+      document.getElementById(`${prefix}_dof`).textContent = dof;
+      document.getElementById(`${prefix}_k`).textContent = k.toFixed(2);
+      document.getElementById(`${prefix}_ue`).textContent = ue.toFixed(1);
+      document.getElementById(`${prefix}_ureport`).textContent = uReport.toFixed(1);
+    }
+
+    function calcAll() {
+      const maxF = parseFloat(document.getElementById('maxFlowSetting').value) || 5.0;
+      const r2 = computeFlowRow(2.0, ['f2_1','f2_2','f2_3'], 'rF2', 'avgF2', 'lowF2', 'uppF2', 'resF2');
+      const r5 = computeFlowRow(maxF, ['f5_1','f5_2','f5_3'], 'rF5', 'avgF5', 'lowF5', 'uppF5', 'resF5');
+      computeO2Row(['o2_1','o2_2','o2_3'], 'rO2', 'avgO2', 'resO2');
+      computeO2Row(['o5_1','o5_2','o5_3'], 'rO5', 'avgO5', 'resO5');
+
+      // ตรวจสอบกฎ 1/3 ของ ISO 80601-2-69:2026
+      const isoEl = document.getElementById('isoRuleCheck');
+      let msgs = [];
+      [r2, r5].forEach(r => {
+        if (r) {
+          // เกณฑ์ตัวอย่าง ISO 80601-2-69:2026: MPE เครื่องทั่วไป ±(0.5 + 10%) -> 1/3 คือ ±(0.16 + 3%) หรือเทียบกับ MPE ที่ทดสอบ ±10%
+          const mpeIso = 0.5 + (r.setting * 0.10);
+          const limitOneThird = mpeIso / 3.0;
+          const ok = r.ue <= limitOneThird;
+          msgs.push(`• ที่ ${r.setting} L/min: Ue = ±${r.ue.toFixed(2)} L/min (1/3 ของเกณฑ์ ±${mpeIso.toFixed(2)} คือ ±${limitOneThird.toFixed(2)} L/min) → ${ok ? '<span class="badge badge-pass">ผ่านกฎ 1/3</span>' : '<span class="badge badge-warn">เกิน 1/3</span>'}`);
+        }
+      });
+      isoEl.innerHTML = msgs.length ? msgs.join('<br>') : 'กรุณากรอกค่าในตารางข้อ 5 เพื่อตรวจสอบความสอดคล้องกับกฎ 1/3 ในหน้า 3...';
+    }
+
+    // นำเข้า CSV จาก CYD Oxygen Analyzer
+    function importCSV(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const lines = e.target.result.split(/\r?\n/);
+        let rows = [];
+        lines.forEach(line => {
+          if (line.startsWith('#')) {
+            if (line.includes('Device Serial Number')) {
+              const p = line.split(':');
+              if (p[1]) document.getElementById('stdSn').value = p[1].trim();
+            }
+          } else if (line.trim() && !line.startsWith('Timestamp') && !line.startsWith('Date_Time')) {
+            const cols = line.split(',');
+            if (cols.length >= 5) {
+              const o2 = parseFloat(cols[2]);
+              const flow = parseFloat(cols[3]);
+              const temp = parseFloat(cols[4]);
+              if (!isNaN(o2) && !isNaN(flow)) rows.push({ o2, flow, temp });
+            }
+          }
+        });
+
+        if (rows.length > 0) {
+          const maxF = parseFloat(document.getElementById('maxFlowSetting').value) || 5.0;
+          const lowF = rows.filter(r => r.flow >= 1.5 && r.flow <= 2.5).slice(-3);
+          const highF = rows.filter(r => r.flow >= (maxF - 0.8) && r.flow <= (maxF + 0.8)).slice(-3);
+
+          lowF.forEach((r, i) => {
+            document.getElementById(`f2_${i+1}`).value = r.flow.toFixed(2);
+            document.getElementById(`o2_${i+1}`).value = r.o2.toFixed(1);
+          });
+          highF.forEach((r, i) => {
+            document.getElementById(`f5_${i+1}`).value = r.flow.toFixed(2);
+            document.getElementById(`o5_${i+1}`).value = r.o2.toFixed(1);
+          });
+          if (!document.getElementById('tempStart').value && !isNaN(rows[0].temp)) {
+            document.getElementById('tempStart').value = rows[0].temp.toFixed(1);
+          }
+          if (!document.getElementById('tempEnd').value && !isNaN(rows[rows.length-1].temp)) {
+            document.getElementById('tempEnd').value = rows[rows.length-1].temp.toFixed(1);
+          }
+          calcAll();
+          alert(`นำเข้าข้อมูลสำเร็จ (${rows.length} แถว)`);
+        } else {
+          alert('ไม่พบข้อมูลแถวการวัดในไฟล์ CSV');
+        }
+      };
+      reader.readAsText(file);
+    }
+  </script>
+</body>
+</html>

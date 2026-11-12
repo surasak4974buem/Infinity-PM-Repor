@@ -1,0 +1,525 @@
+20:21:44.652 -> ⸮w⸮J⸮ ⸮򠂺⸮Ҫ⸮⸮H⸮W¸BB⸮⸮Q⸮⸮꥕SQU⸮	ݯ⸮⸮⸮E⸮BZ⸮⸮e⸮⸮e1⸮⸮⸮%=⸮⸮J⸮c⸮˥ݳZ⸮ ⸮	⸮⸮⸮⸮⸮x⸮وc⸮⸮E⸮ٺ⸮⸮0⸮⸮E⸮'⸮⸮0⸮⸮%⸮⸮a⸮i⸮0E⸮'⸮⸮0⸮⸮}Ѳ⸮⸮⸮A⸮⸮⸮⸮⸮⸮¸⸮⸮A둕⸮4⸮q⸮⸮ͫ⸮⸮v'*⸮⸮d'⸮M⸮⸮⸮0⸮⸮Y⸮ʳ⸮Ȭ+⸮:⸮ѐ⸮⸮⸮⸮⸮K⸮i⸮f⸮⸮⸮녑⸮⸮⸮0⸮⸮⸮⸮,K⸮i⸮⸮*⸮K⸮⸮⸮⸮0⸮⸮⸮j
+20:21:44.839 -> TTGO ESP32 - OCS-3F Sensor Reader with TFT Display
+20:22:05.823 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:22:51.981 -> O2: 27.7 % | Flow: 0.7 L/min | Temp: 30.8 C
+20:23:37.406 -> O2: 27.0 % | Flow: 4.6 L/min | Temp: 31.9 C
+20:24:22.943 -> O2: 24.8 % | Flow: 4.6 L/min | Temp: 31.3 C
+20:25:08.421 -> O2: 22.8 % | Flow: 4.6 L/min | Temp: 31.1 C
+20:25:53.922 -> O2: 21.4 % | Flow: 4.6 L/min | Temp: 31.1 C
+20:26:39.285 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 31.0 C
+20:27:25.065 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:28:10.707 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:28:56.483 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:29:42.307 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:30:27.843 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:31:13.665 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:31:59.698 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:32:45.604 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.7 C
+20:33:31.582 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:34:17.427 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:35:03.268 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:35:49.237 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.5 C
+20:36:35.108 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:37:21.025 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:38:07.019 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:38:53.032 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:39:39.019 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:40:24.957 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:41:10.926 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:41:56.390 -> O2: 27.2 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:42:41.922 -> O2: 24.5 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:43:27.354 -> O2: 22.4 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:44:12.945 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:45:04.320 -> Timeout: No data from sensor.
+20:45:06.326 -> Timeout: No data from sensor.
+20:45:08.328 -> Timeout: No data from sensor.
+20:45:10.328 -> Timeout: No data from sensor.
+20:45:12.333 -> Timeout: No data from sensor.
+20:45:14.340 -> Timeout: No data from sensor.
+20:45:16.347 -> Timeout: No data from sensor.
+20:45:18.352 -> Timeout: No data from sensor.
+20:45:20.311 -> Timeout: No data from sensor.
+20:45:22.316 -> Timeout: No data from sensor.
+20:45:24.325 -> Timeout: No data from sensor.
+20:45:26.329 -> Timeout: No data from sensor.
+20:45:28.332 -> Timeout: No data from sensor.
+20:45:30.338 -> Timeout: No data from sensor.
+20:45:32.342 -> Timeout: No data from sensor.
+20:45:34.346 -> Timeout: No data from sensor.
+20:45:36.347 -> Timeout: No data from sensor.
+20:45:38.358 -> Timeout: No data from sensor.
+20:45:40.320 -> Timeout: No data from sensor.
+20:45:42.322 -> Timeout: No data from sensor.
+20:45:44.331 -> Timeout: No data from sensor.
+20:45:44.611 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:45:47.364 -> Timeout: No data from sensor.
+20:45:49.364 -> Timeout: No data from sensor.
+20:45:51.325 -> Timeout: No data from sensor.
+20:45:53.328 -> Timeout: No data from sensor.
+20:45:55.339 -> Timeout: No data from sensor.
+20:45:57.344 -> Timeout: No data from sensor.
+20:45:59.346 -> Timeout: No data from sensor.
+20:46:01.355 -> Timeout: No data from sensor.
+20:46:03.366 -> Timeout: No data from sensor.
+20:46:05.371 -> Timeout: No data from sensor.
+20:46:07.373 -> Timeout: No data from sensor.
+20:46:09.378 -> Timeout: No data from sensor.
+20:46:11.380 -> Timeout: No data from sensor.
+20:46:13.341 -> Timeout: No data from sensor.
+20:46:15.377 -> Timeout: No data from sensor.
+20:46:17.342 -> Timeout: No data from sensor.
+20:46:19.348 -> Timeout: No data from sensor.
+20:46:21.359 -> Timeout: No data from sensor.
+20:46:23.368 -> Timeout: No data from sensor.
+20:46:25.373 -> Timeout: No data from sensor.
+20:46:27.379 -> Timeout: No data from sensor.
+20:46:29.384 -> Timeout: No data from sensor.
+20:46:30.411 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.5 C
+20:46:32.418 -> Timeout: No data from sensor.
+20:46:34.429 -> Timeout: No data from sensor.
+20:46:36.440 -> Timeout: No data from sensor.
+20:46:38.401 -> Timeout: No data from sensor.
+20:46:40.407 -> Timeout: No data from sensor.
+20:46:42.416 -> Timeout: No data from sensor.
+20:46:44.422 -> Timeout: No data from sensor.
+20:46:46.427 -> Timeout: No data from sensor.
+20:46:48.428 -> Timeout: No data from sensor.
+20:46:50.440 -> Timeout: No data from sensor.
+20:46:52.445 -> Timeout: No data from sensor.
+20:46:54.451 -> Timeout: No data from sensor.
+20:46:56.411 -> Timeout: No data from sensor.
+20:46:58.417 -> Timeout: No data from sensor.
+20:47:00.425 -> Timeout: No data from sensor.
+20:47:02.428 -> Timeout: No data from sensor.
+20:47:04.430 -> Timeout: No data from sensor.
+20:47:06.443 -> Timeout: No data from sensor.
+20:47:08.451 -> Timeout: No data from sensor.
+20:47:10.459 -> Timeout: No data from sensor.
+20:47:12.417 -> Timeout: No data from sensor.
+20:47:14.424 -> Timeout: No data from sensor.
+20:47:16.381 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.5 C
+20:47:18.386 -> Timeout: No data from sensor.
+20:47:20.394 -> Timeout: No data from sensor.
+20:47:22.401 -> Timeout: No data from sensor.
+20:47:24.407 -> Timeout: No data from sensor.
+20:47:26.415 -> Timeout: No data from sensor.
+20:47:28.371 -> Timeout: No data from sensor.
+20:47:30.375 -> Timeout: No data from sensor.
+20:47:32.384 -> Timeout: No data from sensor.
+20:47:34.390 -> Timeout: No data from sensor.
+20:47:36.401 -> Timeout: No data from sensor.
+20:47:38.399 -> Timeout: No data from sensor.
+20:47:40.408 -> Timeout: No data from sensor.
+20:47:42.415 -> Timeout: No data from sensor.
+20:47:44.422 -> Timeout: No data from sensor.
+20:47:46.423 -> Timeout: No data from sensor.
+20:47:48.386 -> Timeout: No data from sensor.
+20:47:50.391 -> Timeout: No data from sensor.
+20:47:52.404 -> Timeout: No data from sensor.
+20:47:54.409 -> Timeout: No data from sensor.
+20:47:56.416 -> Timeout: No data from sensor.
+20:47:58.413 -> Timeout: No data from sensor.
+20:48:00.416 -> Timeout: No data from sensor.
+20:48:02.180 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.5 C
+20:48:04.178 -> Timeout: No data from sensor.
+20:48:06.178 -> Timeout: No data from sensor.
+20:48:08.174 -> Timeout: No data from sensor.
+20:48:10.178 -> Timeout: No data from sensor.
+20:48:12.178 -> Timeout: No data from sensor.
+20:48:14.177 -> Timeout: No data from sensor.
+20:48:16.221 -> Timeout: No data from sensor.
+20:48:18.223 -> Timeout: No data from sensor.
+20:48:20.218 -> Timeout: No data from sensor.
+20:48:22.215 -> Timeout: No data from sensor.
+20:48:24.206 -> Timeout: No data from sensor.
+20:48:26.205 -> Timeout: No data from sensor.
+20:48:28.204 -> Timeout: No data from sensor.
+20:48:30.202 -> Timeout: No data from sensor.
+20:48:32.198 -> Timeout: No data from sensor.
+20:48:34.200 -> Timeout: No data from sensor.
+20:48:36.204 -> Timeout: No data from sensor.
+20:48:38.204 -> Timeout: No data from sensor.
+20:48:40.206 -> Timeout: No data from sensor.
+20:48:42.210 -> Timeout: No data from sensor.
+20:48:44.215 -> Timeout: No data from sensor.
+20:48:46.214 -> Timeout: No data from sensor.
+20:48:48.220 -> Timeout: No data from sensor.
+20:48:48.220 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:48:51.205 -> Timeout: No data from sensor.
+20:48:53.216 -> Timeout: No data from sensor.
+20:48:55.219 -> Timeout: No data from sensor.
+20:48:57.231 -> Timeout: No data from sensor.
+20:48:59.235 -> Timeout: No data from sensor.
+20:49:01.243 -> Timeout: No data from sensor.
+20:49:03.198 -> Timeout: No data from sensor.
+20:49:05.243 -> Timeout: No data from sensor.
+20:49:07.200 -> Timeout: No data from sensor.
+20:49:09.204 -> Timeout: No data from sensor.
+20:49:11.249 -> Timeout: No data from sensor.
+20:49:13.209 -> Timeout: No data from sensor.
+20:49:15.214 -> Timeout: No data from sensor.
+20:49:17.218 -> Timeout: No data from sensor.
+20:49:19.218 -> Timeout: No data from sensor.
+20:49:21.227 -> Timeout: No data from sensor.
+20:49:23.230 -> Timeout: No data from sensor.
+20:49:25.236 -> Timeout: No data from sensor.
+20:49:27.241 -> Timeout: No data from sensor.
+20:49:29.242 -> Timeout: No data from sensor.
+20:49:31.247 -> Timeout: No data from sensor.
+20:49:33.249 -> Timeout: No data from sensor.
+20:49:34.223 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:49:36.230 -> Timeout: No data from sensor.
+20:49:38.238 -> Timeout: No data from sensor.
+20:49:40.238 -> Timeout: No data from sensor.
+20:49:42.240 -> Timeout: No data from sensor.
+20:49:44.239 -> Timeout: No data from sensor.
+20:49:46.244 -> Timeout: No data from sensor.
+20:49:48.251 -> Timeout: No data from sensor.
+20:49:50.256 -> Timeout: No data from sensor.
+20:49:52.260 -> Timeout: No data from sensor.
+20:49:54.263 -> Timeout: No data from sensor.
+20:49:56.225 -> Timeout: No data from sensor.
+20:49:58.228 -> Timeout: No data from sensor.
+20:50:00.231 -> Timeout: No data from sensor.
+20:50:02.233 -> Timeout: No data from sensor.
+20:50:04.235 -> Timeout: No data from sensor.
+20:50:06.243 -> Timeout: No data from sensor.
+20:50:08.253 -> Timeout: No data from sensor.
+20:50:10.259 -> Timeout: No data from sensor.
+20:50:12.258 -> Timeout: No data from sensor.
+20:50:14.258 -> Timeout: No data from sensor.
+20:50:16.264 -> Timeout: No data from sensor.
+20:50:18.269 -> Timeout: No data from sensor.
+20:50:20.087 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:50:22.095 -> Timeout: No data from sensor.
+20:50:24.097 -> Timeout: No data from sensor.
+20:50:26.101 -> Timeout: No data from sensor.
+20:50:28.110 -> Timeout: No data from sensor.
+20:50:30.071 -> Timeout: No data from sensor.
+20:50:32.076 -> Timeout: No data from sensor.
+20:50:34.079 -> Timeout: No data from sensor.
+20:50:36.087 -> Timeout: No data from sensor.
+20:50:38.089 -> Timeout: No data from sensor.
+20:50:40.090 -> Timeout: No data from sensor.
+20:50:42.096 -> Timeout: No data from sensor.
+20:50:44.106 -> Timeout: No data from sensor.
+20:50:46.120 -> Timeout: No data from sensor.
+20:50:48.118 -> Timeout: No data from sensor.
+20:50:50.127 -> Timeout: No data from sensor.
+20:50:52.083 -> Timeout: No data from sensor.
+20:50:54.091 -> Timeout: No data from sensor.
+20:50:56.096 -> Timeout: No data from sensor.
+20:50:58.105 -> Timeout: No data from sensor.
+20:51:00.110 -> Timeout: No data from sensor.
+20:51:02.116 -> Timeout: No data from sensor.
+20:51:04.121 -> Timeout: No data from sensor.
+20:51:05.893 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:51:07.895 -> Timeout: No data from sensor.
+20:51:09.900 -> Timeout: No data from sensor.
+20:51:11.909 -> Timeout: No data from sensor.
+20:51:13.914 -> Timeout: No data from sensor.
+20:51:15.914 -> Timeout: No data from sensor.
+20:51:17.914 -> Timeout: No data from sensor.
+20:51:19.918 -> Timeout: No data from sensor.
+20:51:21.924 -> Timeout: No data from sensor.
+20:51:23.933 -> Timeout: No data from sensor.
+20:51:25.934 -> Timeout: No data from sensor.
+20:51:27.939 -> Timeout: No data from sensor.
+20:51:29.945 -> Timeout: No data from sensor.
+20:51:31.950 -> Timeout: No data from sensor.
+20:51:33.910 -> Timeout: No data from sensor.
+20:51:35.914 -> Timeout: No data from sensor.
+20:51:37.919 -> Timeout: No data from sensor.
+20:51:39.926 -> Timeout: No data from sensor.
+20:51:41.931 -> Timeout: No data from sensor.
+20:51:43.935 -> Timeout: No data from sensor.
+20:51:45.940 -> Timeout: No data from sensor.
+20:51:47.944 -> Timeout: No data from sensor.
+20:51:49.948 -> Timeout: No data from sensor.
+20:51:51.856 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:51:53.862 -> Timeout: No data from sensor.
+20:51:55.867 -> Timeout: No data from sensor.
+20:51:57.868 -> Timeout: No data from sensor.
+20:51:59.875 -> Timeout: No data from sensor.
+20:52:01.876 -> Timeout: No data from sensor.
+20:52:03.882 -> Timeout: No data from sensor.
+20:52:05.887 -> Timeout: No data from sensor.
+20:52:07.891 -> Timeout: No data from sensor.
+20:52:09.852 -> Timeout: No data from sensor.
+20:52:11.852 -> Timeout: No data from sensor.
+20:52:13.858 -> Timeout: No data from sensor.
+20:52:15.865 -> Timeout: No data from sensor.
+20:52:17.870 -> Timeout: No data from sensor.
+20:52:19.872 -> Timeout: No data from sensor.
+20:52:21.879 -> Timeout: No data from sensor.
+20:52:23.890 -> Timeout: No data from sensor.
+20:52:25.892 -> Timeout: No data from sensor.
+20:52:27.898 -> Timeout: No data from sensor.
+20:52:29.901 -> Timeout: No data from sensor.
+20:52:31.860 -> Timeout: No data from sensor.
+20:52:33.862 -> Timeout: No data from sensor.
+20:52:35.863 -> Timeout: No data from sensor.
+20:52:37.871 -> Timeout: No data from sensor.
+20:52:37.871 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:52:40.903 -> Timeout: No data from sensor.
+20:52:42.907 -> Timeout: No data from sensor.
+20:52:44.912 -> Timeout: No data from sensor.
+20:52:46.908 -> Timeout: No data from sensor.
+20:52:48.872 -> Timeout: No data from sensor.
+20:52:50.879 -> Timeout: No data from sensor.
+20:52:52.882 -> Timeout: No data from sensor.
+20:52:54.891 -> Timeout: No data from sensor.
+20:52:56.897 -> Timeout: No data from sensor.
+20:52:58.903 -> Timeout: No data from sensor.
+20:53:00.904 -> Timeout: No data from sensor.
+20:53:02.907 -> Timeout: No data from sensor.
+20:53:04.908 -> Timeout: No data from sensor.
+20:53:06.910 -> Timeout: No data from sensor.
+20:53:08.916 -> Timeout: No data from sensor.
+20:53:10.924 -> Timeout: No data from sensor.
+20:53:12.884 -> Timeout: No data from sensor.
+20:53:14.886 -> Timeout: No data from sensor.
+20:53:16.889 -> Timeout: No data from sensor.
+20:53:18.893 -> Timeout: No data from sensor.
+20:53:20.894 -> Timeout: No data from sensor.
+20:53:22.900 -> Timeout: No data from sensor.
+20:53:23.834 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:53:25.886 -> Timeout: No data from sensor.
+20:53:27.890 -> Timeout: No data from sensor.
+20:53:29.891 -> Timeout: No data from sensor.
+20:53:31.896 -> Timeout: No data from sensor.
+20:53:33.900 -> Timeout: No data from sensor.
+20:53:35.902 -> Timeout: No data from sensor.
+20:53:37.910 -> Timeout: No data from sensor.
+20:53:39.915 -> Timeout: No data from sensor.
+20:53:41.920 -> Timeout: No data from sensor.
+20:53:43.925 -> Timeout: No data from sensor.
+20:53:45.929 -> Timeout: No data from sensor.
+20:53:47.939 -> Timeout: No data from sensor.
+20:53:49.942 -> Timeout: No data from sensor.
+20:53:51.901 -> Timeout: No data from sensor.
+20:53:53.900 -> Timeout: No data from sensor.
+20:53:55.900 -> Timeout: No data from sensor.
+20:53:57.908 -> Timeout: No data from sensor.
+20:53:59.914 -> Timeout: No data from sensor.
+20:54:01.911 -> Timeout: No data from sensor.
+20:54:03.912 -> Timeout: No data from sensor.
+20:54:05.915 -> Timeout: No data from sensor.
+20:54:07.925 -> Timeout: No data from sensor.
+20:54:09.786 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:54:11.786 -> Timeout: No data from sensor.
+20:54:13.792 -> Timeout: No data from sensor.
+20:54:15.794 -> Timeout: No data from sensor.
+20:54:17.800 -> Timeout: No data from sensor.
+20:54:19.814 -> Timeout: No data from sensor.
+20:54:21.816 -> Timeout: No data from sensor.
+20:54:23.820 -> Timeout: No data from sensor.
+20:54:25.827 -> Timeout: No data from sensor.
+20:54:27.825 -> Timeout: No data from sensor.
+20:54:29.785 -> Timeout: No data from sensor.
+20:54:31.786 -> Timeout: No data from sensor.
+20:54:33.786 -> Timeout: No data from sensor.
+20:54:35.788 -> Timeout: No data from sensor.
+20:54:37.797 -> Timeout: No data from sensor.
+20:54:39.804 -> Timeout: No data from sensor.
+20:54:41.804 -> Timeout: No data from sensor.
+20:54:43.807 -> Timeout: No data from sensor.
+20:54:45.810 -> Timeout: No data from sensor.
+20:54:47.810 -> Timeout: No data from sensor.
+20:54:49.810 -> Timeout: No data from sensor.
+20:54:51.811 -> Timeout: No data from sensor.
+20:54:53.820 -> Timeout: No data from sensor.
+20:54:55.728 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:54:57.737 -> Timeout: No data from sensor.
+20:54:59.746 -> Timeout: No data from sensor.
+20:55:01.749 -> Timeout: No data from sensor.
+20:55:03.751 -> Timeout: No data from sensor.
+20:55:05.755 -> Timeout: No data from sensor.
+20:55:07.766 -> Timeout: No data from sensor.
+20:55:09.773 -> Timeout: No data from sensor.
+20:55:11.775 -> Timeout: No data from sensor.
+20:55:13.778 -> Timeout: No data from sensor.
+20:55:15.734 -> Timeout: No data from sensor.
+20:55:17.737 -> Timeout: No data from sensor.
+20:55:19.781 -> Timeout: No data from sensor.
+20:55:21.782 -> Timeout: No data from sensor.
+20:55:23.745 -> Timeout: No data from sensor.
+20:55:25.747 -> Timeout: No data from sensor.
+20:55:27.749 -> Timeout: No data from sensor.
+20:55:29.754 -> Timeout: No data from sensor.
+20:55:31.761 -> Timeout: No data from sensor.
+20:55:33.769 -> Timeout: No data from sensor.
+20:55:35.775 -> Timeout: No data from sensor.
+20:55:37.779 -> Timeout: No data from sensor.
+20:55:39.784 -> Timeout: No data from sensor.
+20:55:41.607 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:55:43.612 -> Timeout: No data from sensor.
+20:55:47.432 -> Timeout: No data from sensor.
+20:55:47.640 -> Timeout: No data from sensor.
+20:56:05.628 -> Timeout: No data from sensor.
+20:56:07.635 -> Timeout: No data from sensor.
+20:56:09.638 -> Timeout: No data from sensor.
+20:56:11.645 -> Timeout: No data from sensor.
+20:56:13.653 -> Timeout: No data from sensor.
+20:56:15.657 -> Timeout: No data from sensor.
+20:56:17.661 -> Timeout: No data from sensor.
+20:56:19.669 -> Timeout: No data from sensor.
+20:56:21.628 -> Timeout: No data from sensor.
+20:56:23.640 -> Timeout: No data from sensor.
+20:56:25.651 -> Timeout: No data from sensor.
+20:56:27.566 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:56:29.573 -> Timeout: No data from sensor.
+20:56:31.577 -> Timeout: No data from sensor.
+20:56:33.588 -> Timeout: No data from sensor.
+20:56:35.553 -> Timeout: No data from sensor.
+20:56:37.560 -> Timeout: No data from sensor.
+20:56:39.568 -> Timeout: No data from sensor.
+20:56:41.574 -> Timeout: No data from sensor.
+20:56:43.580 -> Timeout: No data from sensor.
+20:56:45.588 -> Timeout: No data from sensor.
+20:56:47.592 -> Timeout: No data from sensor.
+20:56:49.597 -> Timeout: No data from sensor.
+20:56:51.559 -> Timeout: No data from sensor.
+20:56:53.568 -> Timeout: No data from sensor.
+20:56:55.574 -> Timeout: No data from sensor.
+20:56:57.582 -> Timeout: No data from sensor.
+20:56:59.589 -> Timeout: No data from sensor.
+20:57:01.593 -> Timeout: No data from sensor.
+20:57:03.603 -> Timeout: No data from sensor.
+20:57:05.567 -> Timeout: No data from sensor.
+20:57:07.570 -> Timeout: No data from sensor.
+20:57:09.579 -> Timeout: No data from sensor.
+20:57:11.587 -> Timeout: No data from sensor.
+20:57:13.500 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:57:15.506 -> Timeout: No data from sensor.
+20:57:17.515 -> Timeout: No data from sensor.
+20:57:19.521 -> Timeout: No data from sensor.
+20:57:21.530 -> Timeout: No data from sensor.
+20:57:23.536 -> Timeout: No data from sensor.
+20:57:25.537 -> Timeout: No data from sensor.
+20:57:27.540 -> Timeout: No data from sensor.
+20:57:29.546 -> Timeout: No data from sensor.
+20:57:31.510 -> Timeout: No data from sensor.
+20:57:33.511 -> Timeout: No data from sensor.
+20:57:35.532 -> Timeout: No data from sensor.
+20:57:37.523 -> Timeout: No data from sensor.
+20:57:39.530 -> Timeout: No data from sensor.
+20:57:41.538 -> Timeout: No data from sensor.
+20:57:43.539 -> Timeout: No data from sensor.
+20:57:45.545 -> Timeout: No data from sensor.
+20:57:47.546 -> Timeout: No data from sensor.
+20:57:49.541 -> Timeout: No data from sensor.
+20:57:51.538 -> Timeout: No data from sensor.
+20:57:53.535 -> Timeout: No data from sensor.
+20:57:55.532 -> Timeout: No data from sensor.
+20:57:57.538 -> Timeout: No data from sensor.
+20:57:59.496 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:58:01.498 -> Timeout: No data from sensor.
+20:58:03.505 -> Timeout: No data from sensor.
+20:58:05.514 -> Timeout: No data from sensor.
+20:58:07.519 -> Timeout: No data from sensor.
+20:58:09.522 -> Timeout: No data from sensor.
+20:58:11.529 -> Timeout: No data from sensor.
+20:58:13.532 -> Timeout: No data from sensor.
+20:58:15.536 -> Timeout: No data from sensor.
+20:58:17.536 -> Timeout: No data from sensor.
+20:58:19.538 -> Timeout: No data from sensor.
+20:58:21.538 -> Timeout: No data from sensor.
+20:58:23.537 -> Timeout: No data from sensor.
+20:58:25.542 -> Timeout: No data from sensor.
+20:58:27.544 -> Timeout: No data from sensor.
+20:58:29.544 -> Timeout: No data from sensor.
+20:58:31.541 -> Timeout: No data from sensor.
+20:58:33.546 -> Timeout: No data from sensor.
+20:58:35.545 -> Timeout: No data from sensor.
+20:58:37.549 -> Timeout: No data from sensor.
+20:58:39.553 -> Timeout: No data from sensor.
+20:58:41.553 -> Timeout: No data from sensor.
+20:58:43.509 -> Timeout: No data from sensor.
+20:58:45.466 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:58:47.475 -> Timeout: No data from sensor.
+20:58:49.474 -> Timeout: No data from sensor.
+20:58:51.480 -> Timeout: No data from sensor.
+20:58:53.483 -> Timeout: No data from sensor.
+20:58:55.496 -> Timeout: No data from sensor.
+20:58:57.501 -> Timeout: No data from sensor.
+20:58:59.499 -> Timeout: No data from sensor.
+20:59:01.505 -> Timeout: No data from sensor.
+20:59:03.507 -> Timeout: No data from sensor.
+20:59:05.508 -> Timeout: No data from sensor.
+20:59:07.469 -> Timeout: No data from sensor.
+20:59:09.478 -> Timeout: No data from sensor.
+20:59:11.480 -> Timeout: No data from sensor.
+20:59:13.485 -> Timeout: No data from sensor.
+20:59:15.488 -> Timeout: No data from sensor.
+20:59:17.492 -> Timeout: No data from sensor.
+20:59:19.497 -> Timeout: No data from sensor.
+20:59:21.500 -> Timeout: No data from sensor.
+20:59:23.498 -> Timeout: No data from sensor.
+20:59:25.495 -> Timeout: No data from sensor.
+20:59:27.501 -> Timeout: No data from sensor.
+20:59:29.504 -> Timeout: No data from sensor.
+20:59:31.415 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+20:59:33.422 -> Timeout: No data from sensor.
+20:59:35.423 -> Timeout: No data from sensor.
+20:59:37.432 -> Timeout: No data from sensor.
+20:59:39.436 -> Timeout: No data from sensor.
+20:59:41.443 -> Timeout: No data from sensor.
+20:59:43.401 -> Timeout: No data from sensor.
+20:59:45.450 -> Timeout: No data from sensor.
+20:59:47.405 -> Timeout: No data from sensor.
+20:59:49.418 -> Timeout: No data from sensor.
+20:59:51.428 -> Timeout: No data from sensor.
+20:59:53.432 -> Timeout: No data from sensor.
+20:59:55.440 -> Timeout: No data from sensor.
+20:59:57.408 -> Timeout: No data from sensor.
+20:59:59.425 -> Timeout: No data from sensor.
+21:00:01.436 -> Timeout: No data from sensor.
+21:00:03.454 -> Timeout: No data from sensor.
+21:00:05.425 -> Timeout: No data from sensor.
+21:00:07.443 -> Timeout: No data from sensor.
+21:00:09.424 -> Timeout: No data from sensor.
+21:00:11.440 -> Timeout: No data from sensor.
+21:00:13.451 -> Timeout: No data from sensor.
+21:00:15.604 -> Timeout: No data from sensor.
+21:00:17.389 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+21:00:19.397 -> Timeout: No data from sensor.
+21:00:21.404 -> Timeout: No data from sensor.
+21:00:23.403 -> Timeout: No data from sensor.
+21:00:25.408 -> Timeout: No data from sensor.
+21:00:27.412 -> Timeout: No data from sensor.
+21:00:29.417 -> Timeout: No data from sensor.
+21:00:31.425 -> Timeout: No data from sensor.
+21:00:33.430 -> Timeout: No data from sensor.
+21:00:35.435 -> Timeout: No data from sensor.
+21:00:37.391 -> Timeout: No data from sensor.
+21:00:39.396 -> Timeout: No data from sensor.
+21:00:41.402 -> Timeout: No data from sensor.
+21:00:43.405 -> Timeout: No data from sensor.
+21:00:45.411 -> Timeout: No data from sensor.
+21:00:47.420 -> Timeout: No data from sensor.
+21:00:49.415 -> Timeout: No data from sensor.
+21:00:51.416 -> Timeout: No data from sensor.
+21:00:53.416 -> Timeout: No data from sensor.
+21:00:55.422 -> Timeout: No data from sensor.
+21:00:57.429 -> Timeout: No data from sensor.
+21:00:59.432 -> Timeout: No data from sensor.
+21:01:01.436 -> Timeout: No data from sensor.
+21:01:03.396 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.3 C
+21:01:05.399 -> Timeout: No data from sensor.
+21:01:07.405 -> Timeout: No data from sensor.
+21:01:09.408 -> Timeout: No data from sensor.
+21:01:11.420 -> Timeout: No data from sensor.
+21:01:13.422 -> Timeout: No data from sensor.
+21:01:15.428 -> Timeout: No data from sensor.
+21:01:17.436 -> Timeout: No data from sensor.
+21:01:19.398 -> Timeout: No data from sensor.
+21:01:21.403 -> Timeout: No data from sensor.
+21:01:23.405 -> Timeout: No data from sensor.
+21:01:25.408 -> Timeout: No data from sensor.
+21:01:27.417 -> Timeout: No data from sensor.
+21:01:29.422 -> Timeout: No data from sensor.
+21:01:31.428 -> Timeout: No data from sensor.
+21:01:33.432 -> Timeout: No data from sensor.
+21:01:35.436 -> Timeout: No data from sensor.
+21:01:37.443 -> Timeout: No data from sensor.

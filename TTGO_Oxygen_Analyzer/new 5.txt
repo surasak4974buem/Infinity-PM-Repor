@@ -1,0 +1,183 @@
+แน่นอนครับ เราสามารถออกแบบการเชื่อมต่อและเขียนโปรแกรมให้บอร์ด TTGO ESP32 อ่านค่าจากเซ็นเซอร์ OCS-3F 2.1 ได้ โดยจากข้อมูลที่ให้มา วิธีที่ดีที่สุดคือการสื่อสารผ่าน UART (Digital Output) เพราะจะทำให้เราได้ข้อมูลครบถ้วนทั้งความเข้มข้นของออกซิเจน, อัตราการไหล, และอุณหภูมิ
+
+ผมจะแบ่งคำแนะนำออกเป็น 2 ส่วนหลักๆ คือ การเชื่อมต่ออุปกรณ์ (Hardware) และการเขียนโปรแกรม (Software) ครับ
+
+1. การเชื่อมต่ออุปกรณ์ (Hardware)
+อุปกรณ์ที่ต้องใช้:
+
+บอร์ด TTGO T-Display ESP32
+
+เซ็นเซอร์ OCS-3F 2.1
+
+แหล่งจ่ายไฟภายนอก 12V DC (สำคัญมาก)
+
+สายไฟเชื่อมต่อ (Jumper wires)
+
+ขั้นตอนการเชื่อมต่อ:
+
+เซ็นเซอร์ตัวนี้ต้องการไฟเลี้ยง 12V ซึ่งบอร์ด ESP32 ไม่สามารถจ่ายให้ได้โดยตรง จึงจำเป็นต้องใช้แหล่งจ่ายไฟ 12V จากภายนอก และ ต้องต่อกราวด์ (GND) ของทุกอย่างเข้าด้วยกัน เพื่อให้สื่อสารกันได้ถูกต้อง
+
+เราจะใช้ช่องต่อ J2 (Digital Output) ของเซ็นเซอร์ในการเชื่อมต่อทั้งหมด
+
+Pin ของเซ็นเซอร์ (J2)	เชื่อมต่อไปยัง	หมายเหตุ
+Pin 1 (+12V Power Input)	ขั้วบวก (+) ของแหล่งจ่ายไฟ 12V	ใช้สำหรับจ่ายไฟเลี้ยงให้เซ็นเซอร์
+Pin 2 (RXD)	GPIO 15 ของ TTGO ESP32	ขารับข้อมูลของเซ็นเซอร์
+Pin 3 (TXD)	GPIO 13 ของ TTGO ESP32	ขาส่งข้อมูลของเซ็นเซอร์ (ข้อมูลวิ่งจากเส้นนี้ไป ESP32)
+Pin 4 (GND)	GND ของ TTGO ESP32 และ ขั้วลบ (-) ของแหล่งจ่ายไฟ 12V	ต้องต่อ GND ร่วมกันทั้งหมด (Common Ground)
+
+ส่งออกไปยังชีต
+สรุปการเดินสายไฟ:
+
+ไฟเลี้ยงเซ็นเซอร์: ต่อ Pin 1 (J2) ของเซ็นเซอร์เข้ากับขั้วบวก (+) ของ Adapter 12V.
+
+การสื่อสารข้อมูล:
+
+ต่อ Pin 3 (TXD) ของเซ็นเซอร์ เข้ากับขา GPIO 13 (ซึ่งเราจะกำหนดให้เป็นขา RX ของ ESP32).
+
+ต่อ Pin 2 (RXD) ของเซ็นเซอร์ เข้ากับขา GPIO 15 (ซึ่งเราจะกำหนดให้เป็นขา TX ของ ESP32).
+
+กราวด์ร่วม (Common Ground): ต่อ Pin 4 (GND) ของเซ็นเซอร์, ขา GND ของบอร์ด TTGO, และขั้วลบ (-) ของ Adapter 12V เข้าด้วยกันทั้งหมด.
+
+2. การเขียนโปรแกรม (Software)
+เราจะใช้ Arduino IDE ในการเขียนโค้ดสำหรับ ESP32 ครับ โค้ดนี้จะทำการอ่านข้อมูลที่เซ็นเซอร์ส่งมาอัตโนมัติทุกๆ 500ms (Mode 1) ผ่าน Serial2 ของ ESP32
+
+หลักการทำงานของโค้ด:
+
+เปิดการสื่อสารผ่านพอร์ตอนุกรมที่สอง (Serial2) โดยกำหนดขา RX/TX ตามที่เราต่อสายไว้ (GPIO 13, 15) และตั้งค่า Baud Rate เป็น 9600 ตามสเปคชีท
+
+ใน loop() โปรแกรมจะรอจนกว่าจะมีข้อมูลเข้ามาครบ 12 bytes ซึ่งเป็นขนาดของ 1 แพ็คเกจข้อมูล
+
+ตรวจสอบว่า Byte แรกคือ 0x16 (Start byte) หรือไม่ เพื่อให้แน่ใจว่าเป็นจุดเริ่มต้นของข้อมูล
+
+อ่านข้อมูลทั้ง 12 bytes เก็บไว้ในอาเรย์
+
+ตรวจสอบความถูกต้องของข้อมูล (Checksum) โดยการบวกข้อมูล 11 bytes แรก แล้วเทียบกับ Checksum byte ที่ส่งมา
+
+หากข้อมูลถูกต้อง จะทำการแปลงค่า ความเข้มข้น, อัตราการไหล, และอุณหภูมิ จากข้อมูล Hex 2 Bytes ให้เป็นเลขทศนิยมตามสูตรในเอกสาร
+
+แสดงผลลัพธ์ออกทาง Serial Monitor
+
+
+----------------
+20:21:44.839 -> TTGO ESP32 - OCS-3F Sensor Reader with TFT Display
+20:22:05.823 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:22:51.981 -> O2: 27.7 % | Flow: 0.7 L/min | Temp: 30.8 C
+20:23:37.406 -> O2: 27.0 % | Flow: 4.6 L/min | Temp: 31.9 C
+20:24:22.943 -> O2: 24.8 % | Flow: 4.6 L/min | Temp: 31.3 C
+20:25:08.421 -> O2: 22.8 % | Flow: 4.6 L/min | Temp: 31.1 C
+20:25:53.922 -> O2: 21.4 % | Flow: 4.6 L/min | Temp: 31.1 C
+20:26:39.285 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 31.0 C
+20:27:25.065 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:28:10.707 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:28:56.483 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.9 C
+20:29:42.307 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:30:27.843 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:31:13.665 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:31:59.698 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.8 C
+20:32:45.604 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.7 C
+20:33:31.582 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:34:17.427 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:35:03.268 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+20:35:49.237 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.5 C
+20:36:35.108 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:37:21.025 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:38:07.019 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:38:53.032 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:39:39.019 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:40:24.957 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:41:10.926 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.4 C
+20:41:56.390 -> O2: 27.2 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:42:41.922 -> O2: 24.5 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:43:27.354 -> O2: 22.4 % | Flow: 4.8 L/min | Temp: 30.5 C
+20:44:12.945 -> O2: 20.5 % | Flow: 0.0 L/min | Temp: 30.6 C
+
+-----------------
+
+#include <SPI.h>
+#include <TFT_eSPI.h>
+#include <HardwareSerial.h>
+
+// --- ส่วนตั้งค่าจอ TFT ---
+TFT_eSPI tft = TFT_eSPI(135, 240); // สร้าง object สำหรับจอแสดงผล
+
+// --- ส่วนตั้งค่าเซ็นเซอร์ ---
+#define SENSOR_RX_PIN 13
+#define SENSOR_TX_PIN 15
+HardwareSerial SensorSerial(2); // ใช้ Hardware Serial Port 2
+
+void setup() {
+  // เริ่มการทำงานของ Serial Monitor สำหรับดีบัก
+  Serial.begin(115200);
+  Serial.println("TTGO ESP32 - OCS-3F Sensor Reader with TFT Display");
+
+  // เริ่มการทำงานของ Serial Port 2 เพื่อสื่อสารกับเซ็นเซอร์
+  SensorSerial.begin(9600, SERIAL_8N1, SENSOR_RX_PIN, SENSOR_TX_PIN);
+
+  // --- เริ่มต้นการทำงานของจอ TFT ---
+  tft.init();
+  tft.setRotation(1);
+  tft.fillScreen(TFT_BLACK);
+  
+  // --- วาดหัวข้อต่างๆ ลงบนจอ (ทำครั้งเดียว) ---
+  // เราจะใช้ font 2 ที่ใหญ่กว่าสำหรับหัวข้อ เพื่อให้อ่านง่าย
+  tft.setTextColor(TFT_GREEN, TFT_BLACK);
+  tft.drawString("Oxygen:", 10, 20, 2); 
+
+  tft.setTextColor(TFT_CYAN, TFT_BLACK);
+  tft.drawString("Flow:", 10, 55, 2);
+  
+  tft.setTextColor(TFT_ORANGE, TFT_BLACK);
+  tft.drawString("Temp:", 10, 90, 2);
+}
+
+void loop() {
+  if (SensorSerial.available() >= 12) {
+    if (SensorSerial.read() == 0x16) { 
+      byte data[12];
+      data[0] = 0x16;
+      SensorSerial.readBytes(&data[1], 11);
+
+      byte checksum = 0;
+      for (int i = 0; i < 11; i++) {
+        checksum += data[i];
+      }
+      
+      if (((checksum + data[11]) & 0xFF) == 0) {
+        // --- Checksum ถูกต้อง ---
+        float concentration = (data[3] * 256 + data[4]) / 10.0;
+        float flow = (data[5] * 256 + data[6]) / 10.0;
+        float temperature = (data[7] * 256 + data[8]) / 10.0;
+
+        Serial.printf("O2: %.1f %% | Flow: %.1f L/min | Temp: %.1f C\n", concentration, flow, temperature);
+
+        // --- อัปเดตค่าบนหน้าจอ TFT ---
+        
+        // 1. แสดงค่า Oxygen
+        tft.setTextColor(TFT_GREEN, TFT_BLACK);
+        // เคลียร์พื้นที่เก่าก่อนวาดใหม่ (ปรับขนาดสี่เหลี่ยมให้พอดีกับฟอนต์ใหม่)
+        tft.fillRect(95, 20, 120, 18, TFT_BLACK); 
+        // **เปลี่ยน font จาก 2 เป็น 1 เพื่อให้เล็กลง และปรับตำแหน่ง x**
+        tft.drawString(String(concentration, 1) + " %", 100, 20, 2);
+
+        // 2. แสดงค่า Flow
+        tft.setTextColor(TFT_CYAN, TFT_BLACK);
+        tft.fillRect(95, 55, 120, 18, TFT_BLACK);
+        tft.drawString(String(flow, 1) + " L/m", 100, 55, 2);
+
+        // 3. แสดงค่า Temperature
+        tft.setTextColor(TFT_ORANGE, TFT_BLACK);
+        tft.fillRect(95, 90, 120, 18, TFT_BLACK);
+        tft.drawString(String(temperature, 1) + " C", 100, 90, 2);
+
+      } else {
+        Serial.println("Checksum error!");
+        tft.fillRect(0, 115, 240, 20, TFT_BLACK);
+        tft.setTextColor(TFT_RED, TFT_BLACK);
+        tft.drawString("Checksum Error!", 10, 115, 2);
+      }
+    }
+  }
+}
+
+------------------------------------
+

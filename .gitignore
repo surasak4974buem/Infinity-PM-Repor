@@ -1,0 +1,15 @@
+# Ignore customer personal records, temporary lock files, screenshots, and large archives/PDFs
+เช็คเครื่องผลิตออกซิเจน2568.xlsx
+เช็คเครื่องผลิตออกซิเจน_มาตรฐาน2569.xlsx
+~$*.xlsx
+*.rar
+*.zip
+Screenshot*.png
+New folder/
+เอกสารประกอบการอบรมหลักสูตร*.pdf
+WHO.pdf
+OxygenConcentrator_MMS5.pdf
+การตรวจสอบความถูกต้อง-เครื่องผลิตออกซิเจ.pdf
+USER Manual*.pdf
+TTGO_Oxygen_Analyzer/*.pdf
+TTGO_Oxygen_Analyzer/รูป/
